@@ -41,7 +41,8 @@ if (isset($_SESSION['ses-usu-id'])) {
             <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
         </head>
 
-        <body>
+        <!--Quando carrega a página chama o ajax de listagem-->
+        <body onload="listarEstantes(0,<?= $_SESSION['ses-usu-id'] ?>)">
             <!-- container section start -->
             <section id="container" class="">
 
@@ -476,63 +477,40 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <section class="wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de prateleiras</h3>
+                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de estantes</h3>
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar prateleiras</li>
+                                    <li><i class="fa fa-user-md"></i>Listar estantes</li>
                                 </ol>
                             </div>
                         </div>
 
 
+                        <?php
+                        require_once (__DIR__ . '/../controles/estante.php');
+                        ?>
+
+
                         <div class="row">
                             <div class="col-lg-12">
-                                <section class="panel">       
+                                <section class="panel">
+                                    <!--                                    <header class="panel-heading">
+                                                                            Advanced Table
+                                                                        </header>-->
+
                                     <table class="table table-striped table-advance table-hover">
                                         <tr>
-                                            <th><i class="icon_table"></i> Nome</th>
-                                            <th><i class="icon_drawer"></i> Estante</th>                        
-                                            <th><i class="icon_cogs"></i> Ação</th>
+                                            <th><i class="icon_drawer"></i> Nome</th>                       
+                                            <th style="text-align: left"><i class="icon_cogs"></i> Ação</th>
                                         </tr>
                                         <tbody class="paginacao_ajax">
-                                            <?php
-                                            require_once (__DIR__ . '/../controles/prateleira.php');
-                                            foreach ($prateleiras as $p):
-                                                ?>
-                                                <tr data-cod="<?= $p->getId() ?>">
-                                                    <td><?= $p->getNome() ?></td>
-                                                    <td><?= $p->getEstante() ?></td>                                               
-                                                    <td style="text-align: left">
-                                                        <div class="btn-group">
-                                                            <a class="btn btn-primary tooltips" data-original-title="Editar" data-placement="bottom" href="editarprateleira.php?id=<?= $p->getId(); ?>"><i class="icon_pencil"></i></a>
-                                                            <a class="btn btn-danger tooltips" data-original-title="Excluir" data-placement="bottom" onclick="excluirPrateleira(<?= $p->getId(); ?>)" href="#"><i class="icon_close_alt2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            endforeach;
-                                            ?>
+                                           <!--AQUI O AJAX ESCREVE DADOS DE ESTANTES-->
                                         </tbody>
                                     </table>
-                                    <nav style="text-align: center">
-                                        <ul class="pagination ">
-                                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <?php
-                                            for ($i = 0; $i < $qtdPaginas[0]->getPaginas(); $i++):
-                                                if ($i == 0) {
-                                                    ?>
-                                                    <li class="active active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <li class="active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                }
-                                            endfor;
-                                            ?>
-                                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
+                                    <nav class="paginas" style="text-align: center">
+                                        
                                     </nav>
+                                  
                                 </section>
                             </div>
                         </div>

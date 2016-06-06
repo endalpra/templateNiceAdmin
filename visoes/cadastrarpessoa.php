@@ -37,15 +37,10 @@
         <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
 
 
-        <!-- Necessários para funcionamento do jquery-addresspicker -->
-        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>  
         <script src="../template/js/jquery-ui-1.10.4.min.js"></script>
         <script src="../template/js/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="../template/js/jquery-ui-1.9.2.custom.min.js"></script>
-        <script src="../plugins/jquery-addresspicker-master/src/jquery.ui.addresspicker.js"></script>
-        <link rel="stylesheet" href="../plugins/jquery-addresspicker-master/demos/themes/base/jquery.ui.all.css">
         <!--Configuração css do mapa
-        <link rel="stylesheet" href="../plugins/jquery-addresspicker-master/demos/demo.css">
+       <link rel="stylesheet" href="../plugins/jquery-addresspicker-master/demos/demo.css">
         -->
 
         <script>
@@ -305,57 +300,57 @@
                                 <li>
                                     <p class="blue">You have 5 new messages</p>
                                 </li>
-<!--                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
-                                        <span class="subject">
-                                            <span class="from">Greg  Martin</span>
-                                            <span class="time">1 min</span>
-                                        </span>
-                                        <span class="message">
-                                            I really like this admin panel.
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
-                                        <span class="subject">
-                                            <span class="from">Bob   Mckenzie</span>
-                                            <span class="time">5 mins</span>
-                                        </span>
-                                        <span class="message">
-                                            Hi, What is next project plan?
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
-                                        <span class="subject">
-                                            <span class="from">Phillip   Park</span>
-                                            <span class="time">2 hrs</span>
-                                        </span>
-                                        <span class="message">
-                                            I am like to buy this Admin Template.
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
-                                        <span class="subject">
-                                            <span class="from">Ray   Munoz</span>
-                                            <span class="time">1 day</span>
-                                        </span>
-                                        <span class="message">
-                                            Icon fonts are great.
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">See all messages</a>
-                                </li>-->
+                                <!--                                <li>
+                                                                    <a href="#">
+                                                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                                                        <span class="subject">
+                                                                            <span class="from">Greg  Martin</span>
+                                                                            <span class="time">1 min</span>
+                                                                        </span>
+                                                                        <span class="message">
+                                                                            I really like this admin panel.
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                                                        <span class="subject">
+                                                                            <span class="from">Bob   Mckenzie</span>
+                                                                            <span class="time">5 mins</span>
+                                                                        </span>
+                                                                        <span class="message">
+                                                                            Hi, What is next project plan?
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                                                                        <span class="subject">
+                                                                            <span class="from">Phillip   Park</span>
+                                                                            <span class="time">2 hrs</span>
+                                                                        </span>
+                                                                        <span class="message">
+                                                                            I am like to buy this Admin Template.
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                                                                        <span class="subject">
+                                                                            <span class="from">Ray   Munoz</span>
+                                                                            <span class="time">1 day</span>
+                                                                        </span>
+                                                                        <span class="message">
+                                                                            Icon fonts are great.
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">See all messages</a>
+                                                                </li>-->
                             </ul>
                         </li>
                         <!-- inbox notificatoin end -->
@@ -455,24 +450,24 @@
                                 <span>Cadastrar pessoa</span>
                             </a>
                         </li>
-                         <li class="">
-                             <a class="" href="cadastrarlivro.php">
+                        <li class="">
+                            <a class="" href="cadastrarlivro.php">
                                 <i class="icon_document_alt"></i>
                                 <span>Cadastrar livro</span>
                             </a>
                         </li>
-<!--                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_document_alt"></i>
-                                <span>Forms</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="form_component.html">Form Elements</a></li>                          
-                                <li><a class="" href="form_validation.html">Form Validation</a></li>
-                            </ul>
-                        </li>       -->
-                        
+                        <!--                        <li class="sub-menu">
+                                                    <a href="javascript:;" class="">
+                                                        <i class="icon_document_alt"></i>
+                                                        <span>Forms</span>
+                                                        <span class="menu-arrow arrow_carrot-right"></span>
+                                                    </a>
+                                                    <ul class="sub">
+                                                        <li><a class="" href="form_component.html">Form Elements</a></li>                          
+                                                        <li><a class="" href="form_validation.html">Form Validation</a></li>
+                                                    </ul>
+                                                </li>       -->
+
                     </ul>
                     <!-- sidebar menu end-->
                 </div>
@@ -492,8 +487,8 @@
                         </div>
                     </div>
 
-                    
-                     <?php
+
+                    <?php
                     if (isset($_POST['btCadastrar'])) {
                         require_once (__DIR__ . '/../controles/pessoa.php');
                         if (isset($msg)) {
@@ -517,8 +512,8 @@
                         }
                     }
                     ?>
-                    
-                    
+
+
                     <!-- page start-->
                     <div class="row">
                         <div class="col-lg-12">
@@ -573,18 +568,18 @@
                                                                                 <input type="password" class="form-control" id="repetir_senha" name="repetir_senha" required="required" value="<?= @$repetir_senha ?>"  placeholder=" ">
                                                                             </div>
                                                                         </div>
-<!--                                                                        <div class="form-group">
-                                                                            <label class="col-lg-2 control-label">Facebook</label>
-                                                                            <div class="col-lg-6">
-                                                                                <input type="text" class="form-control" id="facebook" name="facebook" value="<?= $facebook ?>" required="required" placeholder=" ">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-lg-2 control-label">Whatsapp</label>
-                                                                            <div class="col-lg-6">
-                                                                                <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="<?= @whatsapp ?>" placeholder="">
-                                                                            </div>
-                                                                        </div> -->
+                                                                        <!--                                                                        <div class="form-group">
+                                                                                                                                                    <label class="col-lg-2 control-label">Facebook</label>
+                                                                                                                                                    <div class="col-lg-6">
+                                                                                                                                                        <input type="text" class="form-control" id="facebook" name="facebook" value="<?= $facebook ?>" required="required" placeholder=" ">
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="form-group">
+                                                                                                                                                    <label class="col-lg-2 control-label">Whatsapp</label>
+                                                                                                                                                    <div class="col-lg-6">
+                                                                                                                                                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="<?= @whatsapp ?>" placeholder="">
+                                                                                                                                                    </div>
+                                                                                                                                                </div> -->
 
                                                                         <h1>Dados de endereço</h1>
                                                                         <div class="form-group">
@@ -611,7 +606,7 @@
                                                                                 <input type="text" readonly="true" class="form-control" id="pais" name="pais" value="<?= @$pais ?>" placeholder="">
                                                                             </div>
                                                                         </div>  
-                                                                         <div class="form-group">
+                                                                        <div class="form-group">
                                                                             <label class="col-lg-2 control-label">Latitude</label>
                                                                             <div class="col-lg-6">
                                                                                 <input type="text" readonly="true" class="form-control" id="latitude" name="latitude" value="<?= @$latitude ?>" placeholder="">
@@ -653,7 +648,7 @@
             <script src="../template/js/jquery.js"></script>
             <script src="../template/js/bootstrap.min.js"></script>
             <!--FIM CONFLITO-->
-            
+
             <!-- nice scroll -->
             <script src="../template/js/jquery.scrollTo.min.js"></script>
             <script src="../template/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -686,5 +681,13 @@
             <script src="../template/js/sparklines.js"></script>	
             <script src="../template/js/charts.js"></script>
             <script src="../template/js/jquery.slimscroll.min.js"></script>
-    </body>
-</html>
+
+            <!-- Necessários para funcionamento do jquery-addresspicker -->
+            <script src="http://maps.google.com/maps/api/js?sensor=false"></script>      
+            <script type="text/javascript" src="../template/js/jquery-ui-1.9.2.custom.min.js"></script>
+            <script src="../plugins/jquery-addresspicker-master/src/jquery.ui.addresspicker.js"></script>
+            <!--Estiliza o jQuery Ui buscar autocompletar-->
+            <link rel="stylesheet" href="../plugins/jquery-addresspicker-master/demos/themes/base/jquery.ui.all.css">
+
+            </body>
+            </html>

@@ -476,71 +476,86 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <section class="wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de prateleiras</h3>
+                                <h3 class="page-header"><i class="fa fa-user-md"></i> Edição de estante</h3>
                                 <ol class="breadcrumb">
-                                    <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar prateleiras</li>
+                                    <li><i class="fa fa-home"></i><a href="../index.php">Home</a></li>
+                                    <li><i class="fa fa-user-md"></i>Editar estante</li>
                                 </ol>
                             </div>
                         </div>
 
 
+                        <?php
+                        require_once (__DIR__ . '/../controles/estante.php');
+                        if(isset($estantes) && !empty($estantes)){
+                            $nome = $estantes[0]->getNome();                                                        
+                        }
+                        
+                        if (isset($_POST['btCadastrar'])) {
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            //Se dados não foram cadastrados recupera os valores
+                            if ((isset($msg) && $msg == "0") || isset($msgErro)) {
+                                echo $msgErro;
+                                //Pega o valor dos campos e seta no value do formulário
+                                $nome = $_POST['nome'];                              
+                            } else {//Se dados foram inseridos limpa os campos
+                                $nome = "";                                
+                            }
+                        }
+                            
+                        ?>
+
+
+                        <!-- page start-->
                         <div class="row">
                             <div class="col-lg-12">
-                                <section class="panel">       
-                                    <table class="table table-striped table-advance table-hover">
-                                        <tr>
-                                            <th><i class="icon_table"></i> Nome</th>
-                                            <th><i class="icon_drawer"></i> Estante</th>                        
-                                            <th><i class="icon_cogs"></i> Ação</th>
-                                        </tr>
-                                        <tbody class="paginacao_ajax">
-                                            <?php
-                                            require_once (__DIR__ . '/../controles/prateleira.php');
-                                            foreach ($prateleiras as $p):
-                                                ?>
-                                                <tr data-cod="<?= $p->getId() ?>">
-                                                    <td><?= $p->getNome() ?></td>
-                                                    <td><?= $p->getEstante() ?></td>                                               
-                                                    <td style="text-align: left">
-                                                        <div class="btn-group">
-                                                            <a class="btn btn-primary tooltips" data-original-title="Editar" data-placement="bottom" href="editarprateleira.php?id=<?= $p->getId(); ?>"><i class="icon_pencil"></i></a>
-                                                            <a class="btn btn-danger tooltips" data-original-title="Excluir" data-placement="bottom" onclick="excluirPrateleira(<?= $p->getId(); ?>)" href="#"><i class="icon_close_alt2"></i></a>
+                                <section class="panel">
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div id="recent-activity" class="tab-pane active">
+                                                <div class="profile-activity">                                          
+                                                    <div class="act-time">                                      
+                                                        <div class="activity-body act-in">
+                                                            <!-- edit-profile -->
+                                                            <div id="edit-profile" class="tab-pane">
+                                                                <section class="panel">                                          
+                                                                    <div class="panel-body bio-graph-info">
+                                                                        <h1>Dados da estante</h1>
+                                                                        <form class="form-horizontal" role="form" action="editarestante.php" method="post">                                                  
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Nome *</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="nome" name="nome"  value="<?= @$nome ?>" placeholder=" ">
+                                                                                </div>
+                                                                            </div>  
+                                                                            <input type="hidden" name="id" value="<?= $estantes[0]->getId(); ?>">
+                                                                            <div class="form-group">
+                                                                                <div class="col-lg-offset-2 col-lg-10">
+                                                                                    <button type="submit" name="btCadastrar" class="btn btn-primary">Gravar</button>
+                                                                                    <button type="button" name="btCancelar" class="btn btn-danger">Cancelar</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            endforeach;
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                    <nav style="text-align: center">
-                                        <ul class="pagination ">
-                                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <?php
-                                            for ($i = 0; $i < $qtdPaginas[0]->getPaginas(); $i++):
-                                                if ($i == 0) {
-                                                    ?>
-                                                    <li class="active active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <li class="active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                }
-                                            endfor;
-                                            ?>
-                                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </section>
                             </div>
                         </div>
+
                         <!-- page end-->
                     </section>
                 </section>
 
-                <script src="../javascript/meuscript.js"></script>
+
 
                 <script src="../template/js/jquery.js"></script>
                 <script src="../template/js/bootstrap.min.js"></script>

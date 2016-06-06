@@ -1,3 +1,7 @@
+<?php
+session_start();
+if (isset($_SESSION['ses-usu-id'])) {
+    ?>
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -513,6 +517,7 @@
                                                                                 <input type="text" class="form-control" id="nome" name="nome" value="<?= @$nome ?>" required="required" placeholder=" ">
                                                                             </div>
                                                                         </div>
+                                                                        <input type="hidden" name="pessoa" value="<?= $_SESSION['ses-usu-id'] ?>">
                                                                         <div class="form-group">
                                                                             <div class="col-lg-offset-2 col-lg-10">
                                                                                 <button type="submit" name="btCadastrar" class="btn btn-primary">Gravar</button>
@@ -581,4 +586,8 @@
     </body>
 </html>
 
+<?php
+}else{
+    echo 'Acesso negado!';
+}
 

@@ -29,7 +29,7 @@ class Areas_do_conhecimento {
 
     public static function buscarTodasAreas_do_conhecimento() {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-        $sql = "SELECT * FROM Areas_do_conhecimento";
+        $sql = "SELECT * FROM Areas_do_conhecimento ORDER BY nome";
         return $bd->executarSQL($sql, 'Areas_do_conhecimento');
     }
 

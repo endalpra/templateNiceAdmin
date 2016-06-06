@@ -41,14 +41,14 @@ if (isset($_SESSION['ses-usu-id'])) {
             <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
         </head>
 
-        <body>
+        <body onload="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, 0, 0)">
             <!-- container section start -->
             <section id="container" class="">
 
 
                 <header class="header dark-bg">
                     <div class="toggle-nav">
-                        <div class="icon-reorder tooltips" data-original-title="Mostra/Esconde Menu" data-placement="bottom"><i class="icon_menu"></i></div>
+                        <div class="icon-reorder tooltips" title="Mostra/Esconde Menu" data-placement="bottom"><i class="icon_menu"></i></div>
                     </div>
 
                     <!--logo start-->
@@ -476,67 +476,55 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <section class="wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de prateleiras</h3>
+                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de livros</h3>
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar prateleiras</li>
+                                    <li><i class="fa fa-user-md"></i>Listar livros</li>
                                 </ol>
                             </div>
                         </div>
 
 
+
+                        <?php
+                        require_once (__DIR__ . '/../controles/livro.php');
+                        ?>
+
+
                         <div class="row">
                             <div class="col-lg-12">
-                                <section class="panel">       
+                                <section class="panel">
+                                    
+                                    <!--Campos de titulo e de quantidade de registro por página-->                                                         
+                                         <div style="padding-left: 0!important" class="input-group col-xs-6"> 
+                                            <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                            <input style="border:none;" class="form-control" id="pesquisar_titulo" name="pesquisar_titulo" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Pesquisar título" type="text">
+                                        </div>                       
+                                         <div style="padding-left: 0!important" class="input-group col-xs-6">
+                                            <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                            <input style="border:none;" class="form-control" id="quantidade_titulos" name="quantidade_titulos" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Quantidade de títulos" type="text">
+                                         </div>
+                                                           
+
                                     <table class="table table-striped table-advance table-hover">
                                         <tr>
-                                            <th><i class="icon_table"></i> Nome</th>
-                                            <th><i class="icon_drawer"></i> Estante</th>                        
-                                            <th><i class="icon_cogs"></i> Ação</th>
+                                            <th><i class="icon_lifesaver"></i> Título</th>
+                                            <th><i class="icon_profile"></i> Autor</th>
+                                            <th><i class="icon_cloud"></i> Área</th>
+                                            <th><i class="icon_table"></i> Prateleira</th>
+                                            <th style="text-align: left"><i class="icon_cogs"></i> Ação</th>
                                         </tr>
                                         <tbody class="paginacao_ajax">
-                                            <?php
-                                            require_once (__DIR__ . '/../controles/prateleira.php');
-                                            foreach ($prateleiras as $p):
-                                                ?>
-                                                <tr data-cod="<?= $p->getId() ?>">
-                                                    <td><?= $p->getNome() ?></td>
-                                                    <td><?= $p->getEstante() ?></td>                                               
-                                                    <td style="text-align: left">
-                                                        <div class="btn-group">
-                                                            <a class="btn btn-primary tooltips" data-original-title="Editar" data-placement="bottom" href="editarprateleira.php?id=<?= $p->getId(); ?>"><i class="icon_pencil"></i></a>
-                                                            <a class="btn btn-danger tooltips" data-original-title="Excluir" data-placement="bottom" onclick="excluirPrateleira(<?= $p->getId(); ?>)" href="#"><i class="icon_close_alt2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            endforeach;
-                                            ?>
+                                            <!--AQUI O AJAX ESCREVE DADOS DE ESTANTES-->
                                         </tbody>
                                     </table>
-                                    <nav style="text-align: center">
-                                        <ul class="pagination ">
-                                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <?php
-                                            for ($i = 0; $i < $qtdPaginas[0]->getPaginas(); $i++):
-                                                if ($i == 0) {
-                                                    ?>
-                                                    <li class="active active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <li class="active_pagina"><a onclick="paginacaoPrateleiras(<?= $i ?>,<?= $_SESSION['ses-usu-id'] ?>);" href='#'><?= $i + 1 ?></a></li>
-                                                    <?php
-                                                }
-                                            endfor;
-                                            ?>
-                                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
+                                    <nav class="paginas" style="text-align: center">
+
                                     </nav>
+
                                 </section>
                             </div>
                         </div>
-                        <!-- page end-->
                     </section>
                 </section>
 
@@ -585,6 +573,8 @@ if (isset($_SESSION['ses-usu-id'])) {
 } else {
     echo 'Acesso negado!';
 }
+
+
 
 
 
