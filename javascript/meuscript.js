@@ -44,9 +44,11 @@ function excluirPrateleira(id) {
         data: {id: id},
         success: function (dado) {
             console.log();
-            if (dado !== 0) {
+            if (dado != 0) {
                 $("tr[data-cod=" + dado + "]").hide(3000);
                 alert("Excluído com sucesso!");
+            }else{
+                alert("Erro ao excluir");
             }
         },
         error: function (req, erro) {
@@ -72,7 +74,7 @@ function listarEstantes(pagina, pessoa) {
             for (i = 0; i < estantes.length; i++) {
                 html += "<tr data-cod=" + $(estantes[i]).find('id').text() + ">";
                 html += "<td>" + $(estantes[i]).find("nome").text() + "</td>";
-                html += '<td style="text-align: left"><div class="btn-group">\n\
+                html += '<td style="text-align: center"><div class="btn-group">\n\
                                                     <a class="btn btn-primary tooltips" data-original-title="Editar" data-placement="bottom" href="editarestante.php?id=' + $(estantes[i]).find("id").text() + '"><i class="icon_pencil"></i></a>\n\
                                                     <a class="btn btn-danger tooltips" data-original-title="Excluir" data-placement="bottom" onclick="excluirEstante(' + $(estantes[i]).find("id").text() + ')" href="#"><i class="icon_close_alt2"></i></a>\n\
                                                     </div></td>';
@@ -112,10 +114,11 @@ function excluirEstante(id) {
         type: 'POST',
         data: {id: id},
         success: function (dado) {
-            console.log();
-            if (dado !== 0) {
+            if (dado != 0) {
                 $("tr[data-cod=" + dado + "]").hide(3000);
                 alert("Excluído com sucesso!");
+            }else{
+                alert("Erro ao excluir!");
             }
         },
         error: function (req, erro) {
@@ -194,7 +197,7 @@ function excluirLivro(id) {
         data: {id: id},
         success: function (dado) {
             //console.log();
-            if (dado !== 0) {
+            if (dado != 0) {
                 $("tr[data-cod=" + dado + "]").hide(3000);
                 alert("Excluído com sucesso!");
             }
@@ -209,7 +212,7 @@ function onlineLivro(id, pessoa, pagina){
         url: "../controles/livro.php",
         type: 'POST',
         dataType: 'text',
-        data: {id_online:id},
+        data: {id_online:id, pessoa:pessoa},
         success: function (dado) {
             //Recarrega os registros para mudar a situação do botão que indica livro online
             listarLivros(pagina, pessoa);
@@ -219,22 +222,22 @@ function onlineLivro(id, pessoa, pagina){
         }
     });
 }
-function pesquisarTitulo(){
-    alert($("#pesquisar_titulo").val());
-}
-function quantidadeTitulos(){
-    var quantidade = $("#quantidade_titulos").val();
-    var titulo = $("#pesquisar_titulo").val();
-    $.ajax({
-        url: "../controles/livro.php",
-        type: 'POST',
-        dataType: 'text',
-        data: {qtdTitulos:quantidade},
-        success: function (data, textStatus, jqXHR) {
-            listarLivros(pagina,pessoa,titulo,quantidade);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            
-        }
-    });
-}
+//function pesquisarTitulo(){
+//    alert($("#pesquisar_titulo").val());
+//}
+//function quantidadeTitulos(){
+//    var quantidade = $("#quantidade_titulos").val();
+//    var titulo = $("#pesquisar_titulo").val();
+//    $.ajax({
+//        url: "../controles/livro.php",
+//        type: 'POST',
+//        dataType: 'text',
+//        data: {qtdTitulos:quantidade},
+//        success: function (data, textStatus, jqXHR) {
+//            listarLivros(pagina,pessoa,titulo,quantidade);
+//        },
+//        error: function (jqXHR, textStatus, errorThrown) {
+//            
+//        }
+//    });
+//}

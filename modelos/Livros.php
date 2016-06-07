@@ -27,14 +27,14 @@ class Livros {
 
     public static function buscarLivroTitulo($pessoa, $primeiroRegistro, $qtdRegistros, $titulo){
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-        $sql = "SELECT l.id as id, titulo,a.nome as area_do_conhecimento,p.nome as prateleira,autor,numero_paginas,descricao,editora,edicao,isbn,online FROM livros l, areas_do_conhecimento a, prateleiras p WHERE l.area_do_conhecimento=a.id AND l.prateleira=p.id AND l.pessoa=".$pessoa." AND LOWER(titulo) LIKE LOWER('%" . $titulo . "%') ORDER BY titulo LIMIT $primeiroRegistro, $qtdRegistros";
+        $sql = "SELECT l.id as id, titulo,a.nome as area_do_conhecimento,p.nome as prateleira,autor,numero_paginas,descricao,editora,edicao,isbn,online FROM livros l, areas_do_conhecimento a, prateleiras p WHERE l.area_do_conhecimento=a.id AND l.prateleira=p.id AND l.pessoa=".$pessoa." AND (LOWER(titulo) LIKE LOWER('%" . $titulo . "%') OR LOWER(autor) LIKE LOWER('%" . $titulo . "%') OR LOWER(a.nome) LIKE LOWER('%" . $titulo . "%') OR LOWER(p.nome) LIKE LOWER('%" . $titulo . "%') ) ORDER BY titulo LIMIT $primeiroRegistro, $qtdRegistros";
         //$sql = "SELECT postagens.codigo from postagens WHERE LOWER(titulo) LIKE LOWER('%" . $titulo . "%') ORDER BY postagens.data DESC";
         return $bd->executarSQL($sql, 'Livros');
     }
     
-     public static function buscarLivroId($id){
+     public static function buscarLivroId($id, $pessoa){
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-        $sql = "SELECT online FROM livros WHERE id=".$id;
+        $sql = "SELECT * FROM livros WHERE id=".$id." AND pessoa=".$pessoa;
         return $bd->executarSQL($sql, 'Livros');
     }
     
@@ -50,9 +50,21 @@ class Livros {
         return $bd->executarSQL($sql, 'Livros');
     }
     
+    public static function getNumPaginasString($pessoa, $qtdRegistros,$string){
+        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $sql = "SELECT CEIL(COUNT(id) / $qtdRegistros) AS paginas FROM livros WHERE pessoa=".$pessoa." AND LOWER(titulo) LIKE LOWER('%" . $string . "%') ";
+        return $bd->executarSQL($sql, 'Livros');
+    }
+    
     public static function excluirLivro($id) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
         $sql = "DELETE FROM livros WHERE id=".$id;
+        return $bd->executarSQL($sql);
+    }
+   
+     public static function alterarLivro($id,$titulo, $area_do_conhecimento, $prateleira, $numero_paginas, $descricao, $autor, $editora, $edicao, $isbn) {
+        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $sql = "UPDATE livros set titulo='$titulo', area_do_conhecimento=$area_do_conhecimento, prateleira=$prateleira, numero_paginas=$numero_paginas, descricao='$descricao', autor='$autor', editora='$editora', edicao=$edicao, isbn='$isbn' WHERE id=".$id;
         return $bd->executarSQL($sql);
     }
     

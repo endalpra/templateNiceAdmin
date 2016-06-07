@@ -449,25 +449,7 @@
                                 <i class="icon_document_alt"></i>
                                 <span>Cadastrar pessoa</span>
                             </a>
-                        </li>
-                        <li class="">
-                            <a class="" href="cadastrarlivro.php">
-                                <i class="icon_document_alt"></i>
-                                <span>Cadastrar livro</span>
-                            </a>
-                        </li>
-                        <!--                        <li class="sub-menu">
-                                                    <a href="javascript:;" class="">
-                                                        <i class="icon_document_alt"></i>
-                                                        <span>Forms</span>
-                                                        <span class="menu-arrow arrow_carrot-right"></span>
-                                                    </a>
-                                                    <ul class="sub">
-                                                        <li><a class="" href="form_component.html">Form Elements</a></li>                          
-                                                        <li><a class="" href="form_validation.html">Form Validation</a></li>
-                                                    </ul>
-                                                </li>       -->
-
+                        </li>                       
                     </ul>
                     <!-- sidebar menu end-->
                 </div>

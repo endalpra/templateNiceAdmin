@@ -56,13 +56,14 @@ else if(URL::isPaginaAtual("estante.php")){
 
         echo $xml;
         
+    //EXCLUIR ESTANTE
     }else if(isset ($_POST['id'])){
         $id = $_POST['id'];
         $retorno = Estantes::excluirEstante($id);
         if($retorno){
             echo $id;
         }else{
-            echo '0';
+            echo 0;
         }
     }
 }

@@ -395,7 +395,7 @@
                         </li>
                          <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon_document_alt"></i>
+                                <i class="icon_book_alt"></i>
                                 <span>Meu livro</span>
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
@@ -406,7 +406,7 @@
                         </li> 
                           <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon_document_alt"></i>
+                                <i class="icon_drawer"></i>
                                 <span>Minha estante</span>
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
@@ -417,7 +417,7 @@
                         </li> 
                          <li class="sub-menu">
                             <a href="javascript:;" class="">
-                                <i class="icon_document_alt"></i>
+                                <i class="icon_table"></i>
                                 <span>Minha prateleira</span>
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
@@ -460,40 +460,40 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="info-box blue-bg">
-                                <i class="fa fa-cloud-download"></i>
+                                <i class="fa fa-globe"></i>
                                 <div class="count">6.674</div>
-                                <div class="title">Download</div>						
+                                <div class="title">Livros na rede</div>						
                             </div><!--/.info-box-->			
                         </div><!--/.col-->
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="info-box brown-bg">
-                                <i class="fa fa-shopping-cart"></i>
-                                <div class="count">7.538</div>
-                                <div class="title">Purchased</div>						
+                                <i class="fa fa-book"></i>
+                                <div class="count">78</div>
+                                <div class="title">Livros seus</div>						
                             </div><!--/.info-box-->			
                         </div><!--/.col-->	
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="info-box dark-bg">
-                                <i class="fa fa-thumbs-o-up"></i>
-                                <div class="count">4.362</div>
-                                <div class="title">Order</div>						
-                            </div><!--/.info-box-->			
-                        </div><!--/.col-->
+                                <i class="fa fa-send-o"></i>
+                                <div class="count">4</div>
+                                <div class="title">Livros emprestados</div>						
+                            </div>			
+                        </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="info-box green-bg">
                                 <i class="fa fa-cubes"></i>
                                 <div class="count">1.426</div>
                                 <div class="title">Stock</div>						
-                            </div><!--/.info-box-->			
-                        </div><!--/.col-->
+                            </div>			
+                        </div>
 
                     </div><!--/.row-->
 
 
-                    <div class="row">
+<!--                    <div class="row">
                         <div class="col-lg-9 col-md-12">
 
                             <div class="panel panel-default">
@@ -512,13 +512,13 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <!-- List starts -->
+                             List starts 
                             <ul class="today-datas">
-                                <!-- List #1 -->
+                                 List #1 
                                 <li>
-                                    <!-- Graph -->
+                                     Graph 
                                     <div><span id="todayspark1" class="spark"></span></div>
-                                    <!-- Text -->
+                                     Text 
                                     <div class="datas-text">11,500 visitors/day</div>
                                 </li>
                                 <li>
@@ -541,7 +541,7 @@
                         </div>
 
 
-                    </div>  
+                    </div>  -->
 
 
                     <!-- Today status end -->
@@ -553,145 +553,35 @@
                         <div class="col-lg-9 col-md-12">	
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
-                                    <div class="panel-actions">
+                                    <h2><i class="fa fa-flag-o red"></i><strong>Reputação</strong></h2>
+<!--                                    <div class="panel-actions">
                                         <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
                                         <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
                                         <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="panel-body">
                                     <table class="table bootstrap-datatable countries">
                                         <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Country</th>
-                                                <th>Users</th>
-                                                <th>Online</th>
-                                                <th>Performance</th>
+                                            <tr>                                               
+                                                <th>Livros não devolvidos</th>                                              
+                                                <th>Sua credibilidade</th>
                                             </tr>
                                         </thead>   
                                         <tbody>
                                             <tr>
-                                                <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>Germany</td>
-                                                <td>2563</td>
-                                                <td>1025</td>
+                                               <td>1</td>
                                                 <td>
                                                     <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
                                                         </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
                                                         </div>
                                                     </div>
                                                     <span class="sr-only">73%</span>   	
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>India</td>
-                                                <td>3652</td>
-                                                <td>2563</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">57%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>Spain</td>
-                                                <td>562</td>
-                                                <td>452</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">93%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>Russia</td>
-                                                <td>1258</td>
-                                                <td>958</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">20%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>USA</td>
-                                                <td>4856</td>
-                                                <td>3621</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">20%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>Brazil</td>
-                                                <td>265</td>
-                                                <td>102</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">20%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>Coloumbia</td>
-                                                <td>265</td>
-                                                <td>102</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">20%</span>   	
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                                                <td>France</td>
-                                                <td>265</td>
-                                                <td>102</td>
-                                                <td>
-                                                    <div class="progress thin">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                        </div>
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                        </div>
-                                                    </div>
-                                                    <span class="sr-only">20%</span>   	
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -701,8 +591,8 @@
                         </div><!--/col-->
                         <div class="col-md-3">
 
-                            <div class="social-box facebook">
-                                <i class="fa fa-facebook"></i>
+                            <div class="social-box twitter">
+                                <i class="">Anuncie aqui!</i>
                                 <ul>
                                     <li>
                                         <strong>256k</strong>
@@ -718,7 +608,7 @@
                         <div class="col-md-3">
 
                             <div class="social-box google-plus">
-                                <i class="fa fa-google-plus"></i>
+                                <i class="fa ">Anuncie aqui!</i>
                                 <ul>
                                     <li>
                                         <strong>962</strong>
@@ -732,10 +622,9 @@
                             </div><!--/social-box-->			
 
                         </div><!--/col-->
-                        <div class="col-md-3">
-
-                            <div class="social-box twitter">
-                                <i class="fa fa-twitter"></i>
+<!--                        <div class="col-md-3">
+                            <div class="social-box facebook">
+                                <i class="fa ">Anuncie aqui!</i>
                                 <ul>
                                     <li>
                                         <strong>1562k</strong>
@@ -746,9 +635,9 @@
                                         <span>tweets</span>
                                     </li>
                                 </ul>
-                            </div><!--/social-box-->			
+                            </div>/social-box			
 
-                        </div><!--/col-->
+                        </div>/col-->
 
                     </div>
 
@@ -760,9 +649,9 @@
 
 
                     <!-- project team & activity start -->
-                    <div class="row">
+<!--                    <div class="row">
                         <div class="col-md-4 portlets">
-                            <!-- Widget -->
+                             Widget 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="pull-left">Message</div>
@@ -774,35 +663,35 @@
                                 </div>
 
                                 <div class="panel-body">
-                                    <!-- Widget content -->
+                                     Widget content 
                                     <div class="padd sscroll">
 
                                         <ul class="chats">
 
-                                            <!-- Chat by us. Use the class "by-me". -->
+                                             Chat by us. Use the class "by-me". 
                                             <li class="by-me">
-                                                <!-- Use the class "pull-left" in avatar -->
+                                                 Use the class "pull-left" in avatar 
                                                 <div class="avatar pull-left">
                                                     <img src="img/user.jpg" alt=""/>
                                                 </div>
 
                                                 <div class="chat-content">
-                                                    <!-- In meta area, first include "name" and then "time" -->
+                                                     In meta area, first include "name" and then "time" 
                                                     <div class="chat-meta">John Smith <span class="pull-right">3 hours ago</span></div>
                                                     Vivamus diam elit diam, consectetur dapibus adipiscing elit.
                                                     <div class="clearfix"></div>
                                                 </div>
                                             </li> 
 
-                                            <!-- Chat by other. Use the class "by-other". -->
+                                             Chat by other. Use the class "by-other". 
                                             <li class="by-other">
-                                                <!-- Use the class "pull-right" in avatar -->
+                                                 Use the class "pull-right" in avatar 
                                                 <div class="avatar pull-right">
                                                     <img src="img/user22.png" alt=""/>
                                                 </div>
 
                                                 <div class="chat-content">
-                                                    <!-- In the chat meta, first include "time" then "name" -->
+                                                     In the chat meta, first include "time" then "name" 
                                                     <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
                                                     Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
                                                     <div class="clearfix"></div>
@@ -822,13 +711,13 @@
                                             </li>  
 
                                             <li class="by-other">
-                                                <!-- Use the class "pull-right" in avatar -->
+                                                 Use the class "pull-right" in avatar 
                                                 <div class="avatar pull-right">
                                                     <img src="img/user22.png" alt=""/>
                                                 </div>
 
                                                 <div class="chat-content">
-                                                    <!-- In the chat meta, first include "time" then "name" -->
+                                                     In the chat meta, first include "time" then "name" 
                                                     <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
                                                     Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
                                                     <div class="clearfix"></div>
@@ -838,7 +727,7 @@
                                         </ul>
 
                                     </div>
-                                    <!-- Widget footer -->
+                                     Widget footer 
                                     <div class="widget-foot">
 
                                         <form class="form-inline">
@@ -857,7 +746,7 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <!--Project Activity start-->
+                            Project Activity start
                             <section class="panel">
                                 <div class="panel-body progress-panel">
                                     <div class="row">
@@ -979,12 +868,12 @@
                                     </tbody>
                                 </table>
                             </section>
-                            <!--Project Activity end-->
+                            Project Activity end
                         </div>
-                    </div><br><br>
+                    </div><br><br>-->
 
                     <div class="row">
-                        <div class="col-md-6 portlets">
+<!--                        <div class="col-md-6 portlets">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h2><strong>Calendar</strong></h2>
@@ -995,17 +884,17 @@
 
                                 </div><br><br><br>
                                 <div class="panel-body">
-                                    <!-- Widget content -->
+                                     Widget content 
 
-                                    <!-- Below line produces calendar. I am using FullCalendar plugin. -->
+                                     Below line produces calendar. I am using FullCalendar plugin. 
                                     <div id="calendar"></div>
 
                                 </div>
                             </div> 
 
-                        </div>
+                        </div>-->
 
-                        <div class="col-md-6 portlets">
+<!--                        <div class="col-md-6 portlets">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <div class="pull-left">Quick Post</div>
@@ -1019,23 +908,23 @@
                                     <div class="padd">
 
                                         <div class="form quick-post">
-                                            <!-- Edit profile form (not working)-->
+                                             Edit profile form (not working)
                                             <form class="form-horizontal">
-                                                <!-- Title -->
+                                                 Title 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-2" for="title">Title</label>
                                                     <div class="col-lg-10"> 
                                                         <input type="text" class="form-control" id="title">
                                                     </div>
                                                 </div>   
-                                                <!-- Content -->
+                                                 Content 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-2" for="content">Content</label>
                                                     <div class="col-lg-10">
                                                         <textarea class="form-control" id="content"></textarea>
                                                     </div>
                                                 </div>                           
-                                                <!-- Cateogry -->
+                                                 Cateogry 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-2">Category</label>
                                                     <div class="col-lg-10">                               
@@ -1048,7 +937,7 @@
                                                         </select>  
                                                     </div>
                                                 </div>              
-                                                <!-- Tags -->
+                                                 Tags 
                                                 <div class="form-group">
                                                     <label class="control-label col-lg-2" for="tags">Tags</label>
                                                     <div class="col-lg-10">
@@ -1056,9 +945,9 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Buttons -->
+                                                 Buttons 
                                                 <div class="form-group">
-                                                    <!-- Buttons -->
+                                                     Buttons 
                                                     <div class="col-lg-offset-2 col-lg-9">
                                                         <button type="submit" class="btn btn-primary">Publish</button>
                                                         <button type="submit" class="btn btn-danger">Save Draft</button>
@@ -1071,12 +960,12 @@
 
                                     </div>
                                     <div class="widget-foot">
-                                        <!-- Footer goes here -->
+                                         Footer goes here 
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
+                        </div>-->
 
                     </div> 
                     <!-- project team & activity end -->

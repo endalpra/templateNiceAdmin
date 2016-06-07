@@ -41,8 +41,7 @@ if (isset($_SESSION['ses-usu-id'])) {
             <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
         </head>
 
-        <!--Quando carrega a página chama o ajax de listagem-->
-        <body onload="listarEstantes(0,<?= $_SESSION['ses-usu-id'] ?>)">
+        <body>
             <!-- container section start -->
             <section id="container" class="">
 
@@ -397,38 +396,38 @@ if (isset($_SESSION['ses-usu-id'])) {
                                 </a>
                             </li>                        
                             <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_book_alt"></i>
-                                <span>Meu livro</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarlivro.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarlivros.php">Listar</a></li>
-                            </ul>
-                        </li> 
-                          <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_drawer"></i>
-                                <span>Minha estante</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarestante.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarestantes.php">Listar</a></li>
-                            </ul>
-                        </li> 
-                         <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_table"></i>
-                                <span>Minha prateleira</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarprateleira.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarprateleiras.php">Listar</a></li>
-                            </ul>
-                        </li> 
+                                <a href="javascript:;" class="">
+                                    <i class="icon_book_alt"></i>
+                                    <span>Meu livro</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarlivro.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarlivros.php">Listar</a></li>
+                                </ul>
+                            </li> 
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_drawer"></i>
+                                    <span>Minha estante</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarestante.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarestantes.php">Listar</a></li>
+                                </ul>
+                            </li> 
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_table"></i>
+                                    <span>Minha prateleira</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarprateleira.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarprateleiras.php">Listar</a></li>
+                                </ul>
+                            </li> 
                         </ul>
                         <!-- sidebar menu end-->
                     </div>
@@ -440,48 +439,194 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <section class="wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de estantes</h3>
+                                <h3 class="page-header"><i class="fa fa-user-md"></i> Edição de livro</h3>
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar estantes</li>
+                                    <li><i class="fa fa-user-md"></i>Editar livro</li>
                                 </ol>
                             </div>
                         </div>
 
 
                         <?php
-                        require_once (__DIR__ . '/../controles/estante.php');
+                        require_once (__DIR__ . '/../controles/livro.php');
+                        if (isset($livros) && !empty($livros)) {
+                            $titulo = $livros[0]->getTitulo();
+                            $area_do_conhecimento = $livros[0]->getArea_do_conhecimento();                           
+                            $prateleira = $livros[0]->getPrateleira();                            
+                            $numero_paginas = $livros[0]->getNumero_paginas();
+                            $descricao = $livros[0]->getDescricao();
+                            $autor = $livros[0]->getAutor();
+                            $editora = $livros[0]->getEditora();
+                            $edicao = $livros[0]->getEdicao();
+                            $isbn = $livros[0]->getIsbn();
+                            $online = $livros[0]->getOnline();
+                        }
+
+                        if (isset($_POST['btCadastrar'])) {
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            //Se dados não foram cadastrados recupera os valores
+                            if ((isset($msg) && $msg == "0") || (isset($msgErro))) {
+                                if(isset($msgErro))
+                                    echo $msgErro;
+                                //Pega o valor dos campos e seta no value do formulário
+                                if (isset($_POST['titulo']))
+                                    $titulo = $_POST['titulo'];
+                                if (isset($_POST['area_do_conhecimento']))
+                                    $area_do_conhecimento = $_POST['area_do_conhecimento'];
+                                if (isset($_POST['prateleira']))
+                                    $prateleira = $_POST['prateleira'];
+                                if (isset($_POST['pessoa']))
+                                    $pessoa = $_POST['pessoa'];
+                                if (isset($_POST['numero_paginas']))
+                                    $numero_paginas = $_POST['numero_paginas'];
+                                if (isset($_POST['descricao']))
+                                    $descricao = $_POST['descricao'];
+                                if (isset($_POST['autor']))
+                                    $autor = $_POST['autor'];
+                                if (isset($_POST['editora']))
+                                    $editora = $_POST['editora'];
+                                if (isset($_POST['edicao']))
+                                    $edicao = $_POST['edicao'];
+                                if (isset($_POST['isbn']))
+                                    $isbn = $_POST['isbn'];
+                            } else {//Se dados foram inseridos limpa os campos
+                                $titulo = "";
+                                $numero_paginas = "";
+                                $descricao = "";
+                                $autor = "";
+                                $editora = "";
+                                $edicao = "";
+                                $isbn = "";
+                            }
+                        }
                         ?>
 
 
+                                                <!-- page start-->
                         <div class="row">
-                            <div class="col-lg-7">
+                            <div class="col-lg-12">
                                 <section class="panel">
-                                    <!--                                    <header class="panel-heading">
-                                                                            Advanced Table
-                                                                        </header>-->
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div id="recent-activity" class="tab-pane active">
+                                                <div class="profile-activity">                                          
+                                                    <div class="act-time">                                      
+                                                        <div class="activity-body act-in">
 
-                                    <table class="table table-striped table-advance table-hover">
-                                        <tr>
-                                            <th><i class="icon_drawer"></i> Nome</th>                       
-                                            <th style="text-align: center"><i class="icon_cogs"></i> Ação</th>
-                                        </tr>
-                                        <tbody class="paginacao_ajax">
-                                           <!--AQUI O AJAX ESCREVE DADOS DE ESTANTES-->
-                                        </tbody>
-                                    </table>
-                                    <nav class="paginas" style="text-align: center">
-                                        
-                                    </nav>
-                                  
-                                </section>
-                            </div>
-                        </div>
+
+                                                            <!-- edit-profile -->
+                                                            <div id="edit-profile" class="tab-pane">
+                                                                <section class="panel">                                          
+                                                                    <div class="panel-body bio-graph-info">
+                                                                        <h1>Dados do livro</h1>
+                                                                        <form class="form-horizontal" role="form" action="editarlivro.php" method="post">                                                  
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Título *</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="titulo" name="titulo" value="<?= @$titulo ?>" required="required" placeholder=" ">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label col-lg-2" for="inputSuccess">Área do conhecimento *</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <select id="area_do_conhecimento" name="area_do_conhecimento" class="form-control m-bot15">
+                                                                                        <?php
+                                                                                        $selecionado = "";
+                                                                                        foreach ($areas_do_conhecimento as $a):
+                                                                                            //Se dados não foram cadastrados, recarrega registro que estava selecionado
+                                                                                            if ((isset($msgErro) && !empty($msgErro)) || (isset($msg) && $msg == "0") || isset($area_do_conhecimento)) {
+                                                                                                if ($area_do_conhecimento == $a->getId()) {
+                                                                                                    $selecionado = "selected";
+                                                                                                }
+                                                                                                echo " <option value='{$a->getId()}'" . $selecionado . ">{$a->getNome()}</option> ";
+                                                                                                $selecionado = "";
+                                                                                            } else {
+                                                                                                echo " <option value='{$a->getId()}'>{$a->getNome()}</option> ";
+                                                                                            }
+                                                                                        endforeach;
+                                                                                        ?>                                                                                    
+                                                                                    </select>                                                                                
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label col-lg-2" for="inputSuccess">Prateleira *</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <select id="prateleira" name="prateleira" class="form-control m-bot15">
+                                                                                        <?php
+                                                                                        $selecionado = "";
+                                                                                        foreach ($prateleiras as $p):
+                                                                                            //Se dados não foram cadastrados, recarrega registro que estava selecionado
+                                                                                            if ((isset($msgErro) && !empty($msgErro)) || (isset($msg) && $msg == "0") || isset($prateleira)) {
+                                                                                                if ($prateleira == $p->getId()) {
+                                                                                                    $selecionado = "selected";
+                                                                                                }
+                                                                                                echo " <option value='{$p->getId()}'" . $selecionado . ">{$p->getNome()}</option> ";
+                                                                                                $selecionado = "";
+                                                                                            } else {
+                                                                                                echo " <option value='{$p->getId()}'>{$p->getNome()}</option> ";
+                                                                                            }
+                                                                                        endforeach;
+                                                                                        ?>
+                                                                                    </select>                                                                                
+                                                                                </div>
+                                                                            </div>                                                                        
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Autor *</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="autor" name="autor" value="<?= @$autor ?>" required="required" placeholder="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Descrição</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <textarea name="descricao" id="descricao" class="form-control" cols="30" rows="5"><?= @$descricao ?></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Número de páginas</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="numero_paginas" name="numero_paginas" value="<?= @$numero_paginas ?>"  placeholder=" ">
+                                                                                </div>
+                                                                            </div>                                                                       
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Editora</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="editora" name="editora" value="<?= @$editora ?>" placeholder=" ">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">Edição</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="edicao" name="edicao" value="<?= @$edicao ?>" placeholder=" ">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-lg-2 control-label">ISBN</label>
+                                                                                <div class="col-lg-6">
+                                                                                    <input type="text" class="form-control" id="isbn" name="isbn" value="<?= @$isbn ?>" placeholder="">
+                                                                                </div>
+                                                                            </div> 
+                                                                            <input type="hidden" name="id" value="<?= $livros[0]->getId() ?>"
+                                                                                   <div class="form-group">
+                                                                                <div class="col-lg-offset-2 col-lg-10">
+                                                                                    <button type="submit" name="btCadastrar" class="btn btn-primary">Gravar</button>
+                                                                                    <button type="button" name="btCancelar" class="btn btn-danger">Cancelar</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </section>
+                                                            </div>
+                                                        </div>
+                        
                         <!-- page end-->
                     </section>
                 </section>
 
-                <script src="../javascript/meuscript.js"></script>
+
 
                 <script src="../template/js/jquery.js"></script>
                 <script src="../template/js/bootstrap.min.js"></script>
@@ -527,8 +672,6 @@ if (isset($_SESSION['ses-usu-id'])) {
     require_once(__DIR__ . '/../bibliotecas/URL.php');
     URL::redirecionar("login.php");
 }
-
-
 
 
 

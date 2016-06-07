@@ -407,74 +407,39 @@ if (isset($_SESSION['ses-usu-id'])) {
                                     <span>Cadastrar pessoa</span>
                                 </a>
                             </li>                        
-                            <li class="active">
-                                <a class="" href="cadastrarlivro.php">
-                                    <i class="icon_document_alt"></i>
-                                    <span>Cadastrar livro</span>
-                                </a>
-                            </li>
                             <li class="sub-menu">
-                                <a href="javascript:;" class="">
-                                    <i class="icon_document_alt"></i>
-                                    <span>Form</span>
-                                    <span class="menu-arrow arrow_carrot-right"></span>
-                                </a>
-                                <ul class="sub">
-                                    <li><a class="" href="form_component.html">Form Elements</a></li>                          
-                                    <li><a class="" href="form_validation.html">Form Validation</a></li>
-                                </ul>
-                            </li>       
-                            <li class="sub-menu">
-                                <a href="javascript:;" class="">
-                                    <i class="icon_desktop"></i>
-                                    <span>UI Fitures</span>
-                                    <span class="menu-arrow arrow_carrot-right"></span>
-                                </a>
-                                <ul class="sub">
-                                    <li><a class="" href="general.html">Elements</a></li>
-                                    <li><a class="" href="buttons.html">Buttons</a></li>
-                                    <li><a class="" href="grids.html">Grids</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="" href="widgets.html">
-                                    <i class="icon_genius"></i>
-                                    <span>Widgets</span>
-                                </a>
-                            </li>
-                            <li>                     
-                                <a class="" href="chart-chartjs.html">
-                                    <i class="icon_piechart"></i>
-                                    <span>Charts</span>
-
-                                </a>
-
-                            </li>
-
-                            <li class="sub-menu">
-                                <a href="javascript:;" class="">
-                                    <i class="icon_table"></i>
-                                    <span>Tables</span>
-                                    <span class="menu-arrow arrow_carrot-right"></span>
-                                </a>
-                                <ul class="sub">
-                                    <li><a class="" href="basic_table.html">Basic Table</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="sub-menu">
-                                <a href="javascript:;" class="">
-                                    <i class="icon_documents_alt"></i>
-                                    <span>Pages</span>
-                                    <span class="menu-arrow arrow_carrot-right"></span>
-                                </a>
-                                <ul class="sub">                          
-                                    <li><a class="" href="profile.html">Profile</a></li>
-                                    <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                                    <li><a class="" href="blank.html">Blank Page</a></li>
-                                    <li><a class="" href="404.html">404 Error</a></li>
-                                </ul>
-                            </li>
+                            <a href="javascript:;" class="">
+                                <i class="icon_book_alt"></i>
+                                <span>Meu livro</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="cadastrarlivro.php">Cadastrar</a></li>                          
+                                <li><a class="" href="listarlivros.php">Listar</a></li>
+                            </ul>
+                        </li> 
+                          <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_drawer"></i>
+                                <span>Minha estante</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="cadastrarestante.php">Cadastrar</a></li>                          
+                                <li><a class="" href="listarestantes.php">Listar</a></li>
+                            </ul>
+                        </li> 
+                         <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_table"></i>
+                                <span>Minha prateleira</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="cadastrarprateleira.php">Cadastrar</a></li>                          
+                                <li><a class="" href="listarprateleiras.php">Listar</a></li>
+                            </ul>
+                        </li>
 
                         </ul>
                         <!-- sidebar menu end-->
@@ -609,7 +574,7 @@ if (isset($_SESSION['ses-usu-id'])) {
                                                                             <div class="form-group">
                                                                                 <label class="col-lg-2 control-label">Descrição</label>
                                                                                 <div class="col-lg-6">
-                                                                                    <textarea name="descricao" id="descricao" class="form-control" cols="30" rows="5"></textarea>
+                                                                                    <textarea name="descricao" id="descricao" class="form-control" cols="30" rows="5"><?= @$descricao ?></textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group">
@@ -726,6 +691,7 @@ if (isset($_SESSION['ses-usu-id'])) {
 
     <?php
 } else {
-    echo 'Acesso negado!';
+    require_once(__DIR__ . '/../bibliotecas/URL.php');
+    URL::redirecionar("login.php");
 }
 
