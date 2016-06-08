@@ -354,7 +354,7 @@ ul.sidebar-menu li a{
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     border-right: 1px solid #D7D7D7;
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #42637E;
 }
 /*ul.sidebar-menu li a i{
     position: relative;
@@ -373,7 +373,7 @@ ul.sidebar-menu li.active a, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     transition: all 0.3s ease;        
 }
 ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-    border-bottom: 1px solid #d0d8df;
+    border-bottom: 1px solid #42637E;
 }
 /*ul.sidebar-menu li.active a,*/ ul.sidebar-menu .sub-menu li.active a{
     border-bottom: 1px solid #d0d8df;   
@@ -515,7 +515,7 @@ ul.sidebar-menu li.active a i {
 }
 .dark-bg {    
     background: rgba(54,66,74,1);
-    border-bottom: 1px solid #f1f2f7;
+    border-bottom: 1px solid #42637E;
 }
 .panel-content{
     padding: 10px;

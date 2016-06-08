@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    if(isset($_SESSION['ses-usu-id'])){
-?>
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -185,7 +181,7 @@
                                 <span class="profile-ava">
                                     <img alt="" src="template/img/avatar1_small.jpg">
                                 </span>
-                                <span class="username"><?php echo $_SESSION['ses-usu-nome'] ?></span>
+                                <span class="username"><?php if(isset($_SESSION['ses-usu-nome'])) echo $_SESSION['ses-usu-nome'];else echo 'Login'; ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
@@ -387,12 +383,22 @@
                                 <span>Home</span>
                             </a>
                         </li>
-                        <li class="">
+<!--                        <li class="">
                             <a class="" href="cadastrarpessoa.php">
                                 <i class="icon_document_alt"></i>
                                 <span>Cadastrar pessoa</span>
                             </a>
-                        </li>
+                        </li>-->
+                         <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_globe-2"></i>
+                                <span>Livro Online</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="buscarlivros.php">Buscar</a></li>
+                            </ul>
+                        </li> 
                          <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon_book_alt"></i>
@@ -426,6 +432,12 @@
                                 <li><a class="" href="listarprateleiras.php">Listar</a></li>
                             </ul>
                         </li> 
+                          <li>
+                              <a href="contatardono.php">
+                                    <i class="icon_mail_alt"></i>
+                                    <span>Mensagens</span>
+                                </a>
+                            </li>
 <!--                         <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon_document_alt"></i>
@@ -1067,8 +1079,5 @@
         </script>
     </body>
 </html>
-<?php
-    }else{
-        echo "Acesso negado!";
-    }
+
 

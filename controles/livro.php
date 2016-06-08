@@ -61,69 +61,68 @@ if (URL::isPaginaAtual("cadastrarlivro.php")) {
     } else {
         $msgErro = "Preencha os campos obrigatórios *";
     }
-
-}else if(URL::isPaginaAtual("editarlivro.php")){
+} else if (URL::isPaginaAtual("editarlivro.php")) {
     //Carrega os dados
-    if(isset($_GET['id'])){
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $pessoa = $_SESSION['ses-usu-id'];
         $areas_do_conhecimento = Areas_do_conhecimento::buscarTodasAreas_do_conhecimento();
         $prateleiras = Prateleiras::buscarTodasPrateleirasPessoa($pessoa);
         //Passar a pessoa para que não seja possível acessar outros registros modificando o id na url
-        $livros = Livros::buscarLivroId($id, $pessoa);        
-    
-    //Salva os dados
-    }else{    
-        if (isset($_POST['titulo']) && isset($_POST['area_do_conhecimento']) && isset($_POST['prateleira']) && !empty($_POST['titulo']) && !empty($_POST['area_do_conhecimento']) && !empty($_POST['prateleira'])) {
-        $id = $_POST['id'];
-        $titulo = $_POST['titulo'];
-        $area_do_conhecimento = $_POST['area_do_conhecimento'];
-        $prateleira = $_POST['prateleira'];
-  
-        if (!empty($_POST['numero_paginas'])) {
-            $numero_paginas = $_POST['numero_paginas'];
-        } else {
-            $numero_paginas = 0;
-        }
-        if (!empty($_POST['descricao'])) {
-            $descricao = $_POST['descricao'];
-        } else {
-            $descricao = "";
-        }
-        if (!empty($_POST['autor'])) {
-            $autor = $_POST['autor'];
-        } else {
-            $autor = "";
-        }
-        if (!empty($_POST['editora'])) {
-            $editora = $_POST['editora'];
-        } else {
-            $editora = "";
-        }
-        if (!empty($_POST['edicao'])) {
-            $edicao = $_POST['edicao'];
-        } else {
-            $edicao = 0;
-        }
-        if (!empty($_POST['isbn'])) {
-            $isbn = $_POST['isbn'];
-        } else {
-            $isbn = "";
-        }
+        $livros = Livros::buscarLivroId($id, $pessoa);
 
-        //Verifica se título já não está registrado
-
-        $retorno = Livros::alterarLivro($id, $titulo, $area_do_conhecimento, $prateleira, $numero_paginas, $descricao, $autor, $editora, $edicao, $isbn);
-        if ($retorno) {
-            $msg = 1;
-        } else {
-            $msg = 0;
-        }
+        //Salva os dados
     } else {
-        $msgErro = "Preencha os campos obrigatórios *";
+        if (isset($_POST['titulo']) && isset($_POST['area_do_conhecimento']) && isset($_POST['prateleira']) && !empty($_POST['titulo']) && !empty($_POST['area_do_conhecimento']) && !empty($_POST['prateleira'])) {
+            $id = $_POST['id'];
+            $titulo = $_POST['titulo'];
+            $area_do_conhecimento = $_POST['area_do_conhecimento'];
+            $prateleira = $_POST['prateleira'];
+
+            if (!empty($_POST['numero_paginas'])) {
+                $numero_paginas = $_POST['numero_paginas'];
+            } else {
+                $numero_paginas = 0;
+            }
+            if (!empty($_POST['descricao'])) {
+                $descricao = $_POST['descricao'];
+            } else {
+                $descricao = "";
+            }
+            if (!empty($_POST['autor'])) {
+                $autor = $_POST['autor'];
+            } else {
+                $autor = "";
+            }
+            if (!empty($_POST['editora'])) {
+                $editora = $_POST['editora'];
+            } else {
+                $editora = "";
+            }
+            if (!empty($_POST['edicao'])) {
+                $edicao = $_POST['edicao'];
+            } else {
+                $edicao = 0;
+            }
+            if (!empty($_POST['isbn'])) {
+                $isbn = $_POST['isbn'];
+            } else {
+                $isbn = "";
+            }
+
+            //Verifica se título já não está registrado
+
+            $retorno = Livros::alterarLivro($id, $titulo, $area_do_conhecimento, $prateleira, $numero_paginas, $descricao, $autor, $editora, $edicao, $isbn);
+            if ($retorno) {
+                $msg = 1;
+            } else {
+                $msg = 0;
+            }
+        } else {
+            $msgErro = "Preencha os campos obrigatórios *";
+        }
     }
-    }
-    
+
 //Listar livros com ajax
 } else if (URL::isPaginaAtual("livro.php")) {
     if (isset($_POST['pessoa']) && isset($_POST['pagina'])) {
@@ -146,7 +145,6 @@ if (URL::isPaginaAtual("cadastrarlivro.php")) {
             //Pega o número de páginas contabilizando os registros que contém a string de busca dividido pela qtd de registros por página  
             $qtdPaginas = Livros::getNumPaginasString($pessoa, $qtdRegistros, $titulo);
             $livros = Livros::buscarLivroTitulo($pessoa, $primeiroRegistro, $qtdRegistros, $titulo);
-            
         } else {//Se não está setado o campo título, pesquisa todos os livros pela pessoa
             $livros = Livros::buscarLivrosPessoa($pessoa, $primeiroRegistro, $qtdRegistros);
         }
@@ -191,6 +189,46 @@ if (URL::isPaginaAtual("cadastrarlivro.php")) {
         }
         $retorno = Livros::alterarOnlineLivro($id, $on);
         echo $retorno;
+
+    //BUSCA DE LIVROS ONLINE
+    } else if (isset($_POST['pagina']) && (isset($_POST['string']) || (isset($_POST['string'])) ) ){
+        $pagina = $_POST['pagina'];
+        if(!empty($_POST['string'])){
+            $string = $_POST['string'];
+        }else{//String recebe caracteres para forçar o banco a não retornar registros e assim atualizar a tela
+            $string = "?=+=?";
+        }
+
+        //Se está setado o campo quantidade -> de registros por página 
+        if (isset($_POST['quantidade']) && $_POST['quantidade'] != 0 && !empty($_POST['quantidade'])) {
+            $qtdRegistros = $_POST['quantidade'];
+        } else {
+            $qtdRegistros = QTD_PAG_LIVRO;
+        }
+
+        //Indica qual o primeiro registro a ser listado na página
+        $primeiroRegistro = $pagina * $qtdRegistros;
+
+        //Pega o número de páginas contabilizando os registros que contém a string de busca dividido pela qtd de registros por página  
+        $qtdPaginas = Livros::getNumPaginasStringOnline($qtdRegistros, $string);
+        //Busca os livros online
+        $livros = Livros::buscarLivroStringOnline($primeiroRegistro, $qtdRegistros, $string);
+
+        $xml = "";
+        $xml .= "<?xml version='1.0' encoding='UTF-8'?>";
+        $xml .= "<livros>";
+        foreach ($livros as $l):
+            $xml .= "<livro>";
+            $xml .= "<id>" . $l->getId() . "</id>";
+            $xml .= "<titulo>" . $l->getTitulo() . "</titulo>";
+            $xml .= "<autor>" . $l->getAutor() . "</autor>";
+            $xml .= "<area_do_conhecimento>" . $l->getArea_do_conhecimento() . "</area_do_conhecimento>";
+            $xml .= "<dono>" . $l->getPessoa() . "</dono>";
+            $xml .= "</livro>";
+        endforeach;
+        $xml .= "<qtdPaginas>" . $qtdPaginas[0]->getPaginas() . "</qtdPaginas>";
+        $xml .= "</livros>";
+        echo $xml;
     }
-} 
+}
 

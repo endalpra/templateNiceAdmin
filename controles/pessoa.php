@@ -1,6 +1,7 @@
 <?php
 
 require_once (__DIR__ . '/../modelos/Pessoas.php');
+require_once (__DIR__ . '/../modelos/Livros.php');
 require_once (__DIR__ . '/../bibliotecas/URL.php');
 
 if (URL::isPaginaAtual("cadastrarpessoa.php")) {
@@ -36,7 +37,7 @@ if (URL::isPaginaAtual("cadastrarpessoa.php")) {
         }
 
         //Verifica se login já não está cadastrado
-        
+
         $retorno = Pessoas::cadastrarPessoa($nome, $email, $login, $senha, $facebook, $whatsapp, $cidade, $estado, $pais, $latitude, $longitude);
         if ($retorno) {
             $msg = 1;
@@ -45,5 +46,12 @@ if (URL::isPaginaAtual("cadastrarpessoa.php")) {
         }
     } else {
         $msgErro = "Preencha os campos obrigatórios *";
+    }
+} elseif (URL::isPaginaAtual("contatardono.php")) {
+    if (isset($_GET['id_1']) && isset($_GET['id_2'])) {
+        $idPessoa = $_GET['id_1'];
+        $idLivro = $_GET['id_2'];
+        $pessoa = Pessoas::buscarPessoaId($idPessoa);
+        $livro = Livros::buscarLivroIdContDono($idLivro);
     }
 }

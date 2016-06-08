@@ -24,6 +24,12 @@ class Pessoas {
         $sql = "INSERT INTO pessoas(nome,email,login,senha,facebook,whatsapp,cidade,estado,pais,latitude,longitude) VALUES('$nome','$email','$login','$senha', '$facebook','$whatsapp','$cidade','$estado','$pais','$latitude','$longitude')";
         return $bd->executarSQL($sql);
     }
+    
+     public static function buscarPessoaId($id){
+        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $sql = "SELECT * FROM pessoas WHERE id=".$id;
+        return $bd->executarSQL($sql, 'Pessoas');
+    }
 
     function getId() {
         return $this->id;

@@ -41,7 +41,7 @@ if (isset($_SESSION['ses-usu-id'])) {
             <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
         </head>
 
-        <body onload="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>)">
+        <body>
             <!-- container section start -->
             <section id="container" class="">
 
@@ -55,8 +55,8 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <a href="index.html" class="logo">Nome <span class="lite"> S.</span></a>
                     <!--logo end-->
 
-                    <div class="nav search-row tooltips search-max-740" id="top_menu" data-original-title="Busque um título" data-placement="bottom">
-                        <!--  search form start -->
+<!--                    <div class="nav search-row tooltips search-max-740" id="top_menu" data-original-title="Busque um título" data-placement="bottom">
+                          search form start 
                         <ul class="nav top-menu">                    
                             <li>
                                 <form class="navbar-form">
@@ -64,8 +64,8 @@ if (isset($_SESSION['ses-usu-id'])) {
                                 </form>
                             </li>                    
                         </ul>
-                        <!--  search form end -->                
-                    </div>
+                          search form end                 
+                    </div>-->
 
                     <div class="top-nav notification-row">                
                         <!-- notificatoin dropdown start-->
@@ -389,12 +389,22 @@ if (isset($_SESSION['ses-usu-id'])) {
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="">
+<!--                            <li class="">
                                 <a class="" href="cadastrarpessoa.php">
                                     <i class="icon_document_alt"></i>
                                     <span>Cadastrar pessoa</span>
                                 </a>
-                            </li>                        
+                            </li>                        -->
+                            <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_globe-2"></i>
+                                <span>Livro Online</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="pesquisarlivros.php">Buscar</a></li>
+                            </ul>
+                        </li>
                             <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon_book_alt"></i>
@@ -440,10 +450,10 @@ if (isset($_SESSION['ses-usu-id'])) {
                     <section class="wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de livros</h3>
+                                <h3 class="page-header"><i class="fa fa-globe"></i> Buscar livros online</h3>
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar livros</li>
+                                    <li><i class="fa fa-user-md"></i>Buscar livro online</li>
                                 </ol>
                             </div>
                         </div>
@@ -462,11 +472,11 @@ if (isset($_SESSION['ses-usu-id'])) {
                                     <!--Campos de titulo e de quantidade de registro por página-->                                                         
                                          <div style="padding-left: 0!important" class="input-group col-xs-6"> 
                                             <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                            <input style="border:none;" class="form-control" id="pesquisar_titulo" name="pesquisar_titulo" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Pesquisar livro por título, autor, área ou prateleira" type="text">
+                                            <input style="border:none;" class="form-control" id="pesquisar_titulo" name="pesquisar_titulo" onkeyup="buscarLivro(0);" placeholder="Pesquisar livro por título, autor, área ou prateleira" type="text">
                                         </div>                       
                                          <div style="padding-left: 0!important" class="input-group col-xs-6">
                                             <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                            <input style="border:none;" class="form-control" id="quantidade_titulos" name="quantidade_titulos" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Quantidade de títulos por página" type="text">
+                                            <input style="border:none;" class="form-control" id="quantidade_titulos" name="quantidade_titulos" onkeyup="buscarLivro(0);" placeholder="Quantidade de títulos por página" type="text">
                                          </div>
                                                            
 
@@ -474,8 +484,7 @@ if (isset($_SESSION['ses-usu-id'])) {
                                         <tr>
                                             <th><i class="icon_lifesaver"></i> Título</th>
                                             <th><i class="icon_profile"></i> Autor</th>
-                                            <th><i class="icon_cloud"></i> Área</th>
-                                            <th><i class="icon_table"></i> Prateleira</th>
+                                            <th><i class="icon_cloud"></i> Área</th>                                           
                                             <th style="text-align: left"><i class="icon_cogs"></i> Ação</th>
                                         </tr>
                                         <tbody class="paginacao_ajax">

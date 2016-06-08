@@ -14,8 +14,6 @@ if (isset($_SESSION['ses-usu-id'])) {
 
             <title>Título</title>
 
-
-
             <!-- Bootstrap CSS -->    
             <link href="../template/css/bootstrap.min.css" rel="stylesheet">
             <!-- bootstrap theme -->
@@ -38,17 +36,17 @@ if (isset($_SESSION['ses-usu-id'])) {
             <link href="../template/css/style.css" rel="stylesheet">
             <link href="../template/css/style-responsive.css" rel="stylesheet" />
             <link href="../template/css/xcharts.min.css" rel=" stylesheet">	
-            <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+            <link href="../template/css/jquery-ui-1.10.4.min.css" rel="stylesheet">     
         </head>
 
-        <body onload="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>)">
+        <body>
             <!-- container section start -->
             <section id="container" class="">
 
 
                 <header class="header dark-bg">
                     <div class="toggle-nav">
-                        <div class="icon-reorder tooltips" title="Mostra/Esconde Menu" data-placement="bottom"><i class="icon_menu"></i></div>
+                        <div class="icon-reorder tooltips" data-original-title="Mostra/Esconde Menu" data-placement="bottom"><i class="icon_menu"></i></div>
                     </div>
 
                     <!--logo start-->
@@ -72,7 +70,7 @@ if (isset($_SESSION['ses-usu-id'])) {
                         <ul class="nav pull-right top-menu">
                             <!-- inbox notificatoin start-->
                             <li id="mail_notificatoin_bar" class="dropdown">
-                                <a data-toggle="dropdown" class="dropdown-toggle tooltips" data-original-title="Suas mensagens" data-placement="bottom" href="#">
+                                <a data-toggle="dropdown" class="dropdown tooltips" data-original-title="Minhas mensagens" data-placement="bottom" href="#">
                                     <i class="icon-envelope-l"></i>
                                     <span class="badge bg-important">6</span>
                                 </a>
@@ -136,7 +134,7 @@ if (isset($_SESSION['ses-usu-id'])) {
                             </li>
                             <!-- inbox notificatoin end -->
                             <!-- alert notification start-->
-                            <li id="alert_notificatoin_bar" class="dropdown">
+                            <li id="alert_notificatoin_bar" class="dropdown tooltips" data-original-title="Minhas notificações" data-placement="bottom">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                                     <i class="icon-bell-l"></i>
@@ -187,7 +185,12 @@ if (isset($_SESSION['ses-usu-id'])) {
                                     <span class="profile-ava">
                                         <img alt="" src="template/img/avatar1_small.jpg">
                                     </span>
-                                    <span class="username">Jenifer Smith</span>
+                                    <span class="username"><?php
+                                        if (isset($_SESSION['ses-usu-nome']))
+                                            echo $_SESSION['ses-usu-nome'];
+                                        else
+                                            echo 'Login';
+                                        ?></span>
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu extended logout">
@@ -236,7 +239,7 @@ if (isset($_SESSION['ses-usu-id'])) {
                             <!--Mostra mensagem e notificação quando tela <=512px -->
                             <li>
                             <li class="dropdown notification-minha">
-                                <a data-toggle="dropdown" class="dropdown-toggle tooltips" data-original-title="Suas mensagens" data-placement="bottom" href="#">
+                                <a data-toggle="dropdown" class="dropdown-toggle tooltips" data-original-title="Minhas mensagens" data-placement="bottom" href="#">
                                     <i class="icon-envelope-l"></i>
                                     <span class="badge bg-important">6</span>
                                 </a>
@@ -384,164 +387,263 @@ if (isset($_SESSION['ses-usu-id'])) {
 
 
                             <li>
-                                <a class="" href="index.php">
+                                <a href="index.php">
                                     <i class="icon_house_alt"></i>
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a class="" href="cadastrarpessoa.php">
-                                    <i class="icon_document_alt"></i>
-                                    <span>Cadastrar pessoa</span>
-                                </a>
-                            </li>                        
+                            <!--                        <li class="">
+                                                        <a class="" href="cadastrarpessoa.php">
+                                                            <i class="icon_document_alt"></i>
+                                                            <span>Cadastrar pessoa</span>
+                                                        </a>
+                                                    </li>-->
                             <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_book_alt"></i>
-                                <span>Meu livro</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarlivro.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarlivros.php">Listar</a></li>
-                            </ul>
-                        </li> 
-                          <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_drawer"></i>
-                                <span>Minha estante</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarestante.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarestantes.php">Listar</a></li>
-                            </ul>
-                        </li> 
-                         <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_table"></i>
-                                <span>Minha prateleira</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="cadastrarprateleira.php">Cadastrar</a></li>                          
-                                <li><a class="" href="listarprateleiras.php">Listar</a></li>
-                            </ul>
-                        </li>
-
+                                <a href="javascript:;" class="">
+                                    <i class="icon_globe-2"></i>
+                                    <span>Livro Online</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="buscarlivros.php">Buscar</a></li>
+                                </ul>
+                            </li> 
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_book_alt"></i>
+                                    <span>Meu livro</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarlivro.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarlivros.php">Listar</a></li>
+                                </ul>
+                            </li> 
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_drawer"></i>
+                                    <span>Minha estante</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarestante.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarestantes.php">Listar</a></li>
+                                </ul>
+                            </li> 
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_table"></i>
+                                    <span>Minha prateleira</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="cadastrarprateleira.php">Cadastrar</a></li>                          
+                                    <li><a class="" href="listarprateleiras.php">Listar</a></li>
+                                </ul>
+                             <li  class="active">
+                                <a href="">
+                                    <i class="icon_mail_alt"></i>
+                                    <span>Mensagens</span>
+                                </a>
+                            </li>
+                          
+                            <!--                         <li class="sub-menu">
+                                                        <a href="javascript:;" class="">
+                                                            <i class="icon_document_alt"></i>
+                                                            <span>A. conhecimento</span>
+                                                            <span class="menu-arrow arrow_carrot-right"></span>
+                                                        </a>
+                                                        <ul class="sub">
+                                                            <li><a class="" href="cadastrarareadoconhecimento.php">Cadastrar</a></li>                          
+                                                            <li><a class="" href="listarareasdoconhecimento.php">Listar</a></li>
+                                                        </ul>
+                                                    </li> -->
                         </ul>
                         <!-- sidebar menu end-->
                     </div>
                 </aside>
                 <!--sidebar end-->
 
+                
+                  <?php
+                        require_once (__DIR__ .'/../controles/pessoa.php');
+                        if(isset($msg)){
+                            echo $msg;
+                        }
+                        if(isset($_POST['btEnviar'])){
+                            require_once '/../controles/mensagem.php';
+                            
+                        }
+                         ?>
+                
+                
+                
+                
                 <!--main content start-->
                 <section id="main-content">
-                    <section class="wrapper">
+                    <section class="wrapper">            
+                        <!--overview start-->
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="page-header"><i class="fa fa-user-md"></i> Listagem de livros</h3>
+                                <h3 class="page-header">Contatar dono de "<?= @$livro[0]->getTitulo() ?>"<i class="fa fa-mail-forward"></i></h3>
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-                                    <li><i class="fa fa-user-md"></i>Listar livros</li>
+                                    <li><i class="fa fa-mail-forward">Contatar dono</i></li>						  	
                                 </ol>
                             </div>
                         </div>
-
-
-
-                        <?php
-                        require_once (__DIR__ . '/../controles/livro.php');
-                        ?>
-
-
                         <div class="row">
-                            <div class="col-lg-12">
-                                <section class="panel">
-                                    
-                                    <!--Campos de titulo e de quantidade de registro por página-->                                                         
-                                         <div style="padding-left: 0!important" class="input-group col-xs-6"> 
-                                            <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                            <input style="border:none;" class="form-control" id="pesquisar_titulo" name="pesquisar_titulo" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Pesquisar livro por título, autor, área ou prateleira" type="text">
-                                        </div>                       
-                                         <div style="padding-left: 0!important" class="input-group col-xs-6">
-                                            <span style="border:none;" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                            <input style="border:none;" class="form-control" id="quantidade_titulos" name="quantidade_titulos" onkeyup="listarLivros(0,<?= $_SESSION['ses-usu-id'] ?>, '', '');" placeholder="Quantidade de títulos por página" type="text">
-                                         </div>
-                                                           
 
-                                    <table class="table table-striped table-advance table-hover">
-                                        <tr>
-                                            <th><i class="icon_lifesaver"></i> Título</th>
-                                            <th><i class="icon_profile"></i> Autor</th>
-                                            <th><i class="icon_cloud"></i> Área</th>
-                                            <th><i class="icon_table"></i> Prateleira</th>
-                                            <th style="text-align: left"><i class="icon_cogs"></i> Ação</th>
-                                        </tr>
-                                        <tbody class="paginacao_ajax">
-                                            <!--AQUI O AJAX ESCREVE DADOS DE ESTANTES-->
-                                        </tbody>
-                                    </table>
-                                    <nav class="paginas" style="text-align: center">
+                            <div class="col-md-6 portlets">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="pull-left">Sua mensagem para <?= $pessoa[0]->getNome();   ?></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-heading" style="background-color: white !important;">
+                                        <div class="padd">
+                                            <div class="form">
+                                                <form action="contatardono.php" method="post">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <textarea readonly="readonly" style="min-height: 100px; cursor: default; text-align: left; border: none; border-radius: 5px; outline: none; background-color: white !important;" class="form-control">
+Olá!
+Gostaria de pedir seu livro emprestado.
+Olá!
+Gostaria de pedir seu livro emprestado.
+Olá!
+Gostaria de pedir seu livro emprestado.
+                                                            </textarea>     
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea name="mensagem" style="height:30px !important; border: none; border-radius: 5px; outline: none" class="form-control"></textarea>
+                                                    </div>
+                                                    <input type="hidden" name="destinatario" value="<?=  @$_GET['id_1'] ?>"/>
+                                                    <div class="form-group">                                                    
+                                                        <div class=" col-lg-12">
+                                                            <button type="submit" name="btEnviar" class="btn btn-primary">Enviar<i class="fa fa-send"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
 
-                                    </nav>
 
-                                </section>
+                                        </div>
+                                        <div class="widget-foot">
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
+
+                        </div> 
+                        <!-- project team & activity end -->
+
                     </section>
                 </section>
+                <!--main content end-->
+            </section>
+            <!-- container section start -->
 
-                <script src="../javascript/meuscript.js"></script>
+            <!-- javascripts -->
+            <script src="../template/js/jquery.js"></script>
+            <script src="../template/js/jquery-ui-1.10.4.min.js"></script>
+            <script src="../template/js/jquery-1.8.3.min.js"></script>
+            <script type="text/javascript" src="../template/js/jquery-ui-1.9.2.custom.min.js"></script>
+            <!-- bootstrap -->
+            <script src="../template/js/bootstrap.min.js"></script>
+            <!-- nice scroll -->
+            <script src="../template/js/jquery.scrollTo.min.js"></script>
+            <script src="../template/js/jquery.nicescroll.js" type="text/javascript"></script>
+            <!-- charts scripts -->
+            <script src="../template/assets/jquery-knob/js/jquery.knob.js"></script>
+            <script src="../template/js/jquery.sparkline.js" type="text/javascript"></script>
+            <script src="../template/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+            <script src="../template/js/owl.carousel.js" ></script>
+            <!-- jQuery full calendar -->
+            <<script src="../template/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+            <script src="../template/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+            <!--script for this page only-->
+            <script src="../template/js/calendar-custom.js"></script>
+            <script src="../template/js/jquery.rateit.min.js"></script>
+            <!-- custom select -->
+            <script src="../template/js/jquery.customSelect.min.js" ></script>
+            <script src="../template/assets/chart-master/Chart.js"></script>
 
-                <script src="../template/js/jquery.js"></script>
-                <script src="../template/js/bootstrap.min.js"></script>
+            <!--custome script for all page-->
+            <script src="../template/js/scripts.js"></script>
+            <!-- custom script for this page-->
+            <script src="../template/js/sparkline-chart.js"></script>
+            <script src="../template/js/easy-pie-chart.js"></script>
+            <script src="../template/js/jquery-jvectormap-1.2.2.min.js"></script>
+            <script src="../template/js/jquery-jvectormap-world-mill-en.js"></script>
+            <script src="../template/js/xcharts.min.js"></script>
+            <script src="../template/js/jquery.autosize.min.js"></script>
+            <script src="../template/js/jquery.placeholder.min.js"></script>
+            <script src="../template/js/gdp-data.js"></script>	
+            <script src="../template/js/morris.min.js"></script>
+            <script src="../template/js/sparklines.js"></script>	
+            <script src="../template/js/charts.js"></script>
+            <script src="../template/js/jquery.slimscroll.min.js"></script>
+            <script>
+
+                //knob
+                $(function () {
+                    $(".knob").knob({
+                        'draw': function () {
+                            $(this.i).val(this.cv + '%')
+                        }
+                    })
+                });
+
+                //carousel
+                $(document).ready(function () {
+                    $("#owl-slider").owlCarousel({
+                        navigation: true,
+                        slideSpeed: 300,
+                        paginationSpeed: 400,
+                        singleItem: true
+
+                    });
+                });
+
+                //custom select box
+
+                $(function () {
+                    $('select.styled').customSelect();
+                });
+
+                /* ---------- Map ---------- */
+                $(function () {
+                    $('#map').vectorMap({
+                        map: 'world_mill_en',
+                        series: {
+                            regions: [{
+                                    values: gdpData,
+                                    scale: ['#000', '#000'],
+                                    normalizeFunction: 'polynomial'
+                                }]
+                        },
+                        backgroundColor: '#eef3f7',
+                        onLabelShow: function (e, el, code) {
+                            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                        }
+                    });
+                });
 
 
-                <!-- nice scroll -->
-                <script src="../template/js/jquery.scrollTo.min.js"></script>
-                <script src="../template/js/jquery.nicescroll.js" type="text/javascript"></script>
-                <!-- charts scripts -->
-                <script src="../template/assets/jquery-knob/js/jquery.knob.js"></script>
-                <script src="../template/js/jquery.sparkline.js" type="text/javascript"></script>
-                <script src="../template/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-                <script src="../template/js/owl.carousel.js" ></script>
-                <!-- jQuery full calendar -->
-                <<script src="../template/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-                <script src="../template/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
-                <!--script for this page only-->
-                <script src="../template/js/calendar-custom.js"></script>
-                <script src="../template/js/jquery.rateit.min.js"></script>
-                <!-- custom select -->
-                <script src="../template/js/jquery.customSelect.min.js" ></script>
-                <script src="../template/assets/chart-master/Chart.js"></script>
-                <!--custome script for all page-->
-                <script src="../template/js/scripts.js"></script>
-                <!-- custom script for this page-->
-                <script src="../template/js/sparkline-chart.js"></script>
-                <script src="../template/js/easy-pie-chart.js"></script>
-                <script src="../template/js/jquery-jvectormap-1.2.2.min.js"></script>
-                <script src="../template/js/jquery-jvectormap-world-mill-en.js"></script>
-                <script src="../template/js/xcharts.min.js"></script>
-                <script src="../template/js/jquery.autosize.min.js"></script>
-                <script src="../template/js/jquery.placeholder.min.js"></script>
-                <script src="../template/js/gdp-data.js"></script>	
-                <script src="../template/js/morris.min.js"></script>
-                <script src="../template/js/sparklines.js"></script>	
-                <script src="../template/js/charts.js"></script>
-                <script src="../template/js/jquery.slimscroll.min.js"></script>
+
+            </script>
         </body>
     </html>
+
 
     <?php
 } else {
     require_once(__DIR__ . '/../bibliotecas/URL.php');
     URL::redirecionar("login.php");
 }
-
-
-
-
-
-
 

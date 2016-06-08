@@ -169,9 +169,9 @@ function listarLivros(pagina, pessoa){
             var qtdPaginas = $(dados).find("livros").find("qtdPaginas").text(); 
             for (i = 0; i < qtdPaginas; i++) {
                  if(i==pagina){
-                   paginas +=  '<li class="active active_pagina"><a onclick="listarLivros('+i+','+pessoa+','+0+','+0+')" href="#">'+(i + 1)+' </a></li>';
+                   paginas +=  '<li class="active active_pagina"><a onclick="listarLivros('+i+','+pessoa+')" href="#">'+(i + 1)+' </a></li>';
                  }else{
-                   paginas +=  '<li class="active_pagina"><a onclick="listarLivros('+i+','+pessoa+','+0+','+0+')" href="#">'+(i + 1)+' </a></li>';
+                   paginas +=  '<li class="active_pagina"><a onclick="listarLivros('+i+','+pessoa+')" href="#">'+(i + 1)+' </a></li>';
                  }
              }
             paginas += ' <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li></ul>';
@@ -222,22 +222,62 @@ function onlineLivro(id, pessoa, pagina){
         }
     });
 }
-//function pesquisarTitulo(){
-//    alert($("#pesquisar_titulo").val());
-//}
-//function quantidadeTitulos(){
-//    var quantidade = $("#quantidade_titulos").val();
-//    var titulo = $("#pesquisar_titulo").val();
-//    $.ajax({
-//        url: "../controles/livro.php",
-//        type: 'POST',
-//        dataType: 'text',
-//        data: {qtdTitulos:quantidade},
-//        success: function (data, textStatus, jqXHR) {
-//            listarLivros(pagina,pessoa,titulo,quantidade);
-//        },
-//        error: function (jqXHR, textStatus, errorThrown) {
-//            
-//        }
-//    });
-//}
+function buscarLivro(pagina){
+    var quantidade = $("#quantidade_titulos").val();
+    var string = $("#pesquisar_titulo").val();
+    
+    //alert(titulo);
+    //Deixa em destaque a página atual
+    $(".active_pagina").click(function () {
+        $(".active_pagina").removeClass("active");
+        $(this).addClass("active");
+    });
+    $.ajax({
+        url: '../controles/livro.php',
+        dataType: 'xml',
+        type: 'POST',
+        data: {pagina: pagina, string:string, quantidade:quantidade},
+        success: function (dados) {
+            console.log(dados);
+            var livros = $(dados).find("livros").find("livro");
+            var html = "";
+            var online = false;
+            for (i = 0; i < livros.length; i++) {
+                html += "<tr data-cod=" + $(livros[i]).find('id').text() + ">";
+                html += "<td>" + $(livros[i]).find("titulo").text() + "</td>";
+                html += "<td>" + $(livros[i]).find("autor").text() + "</td>";
+                html += "<td>" + $(livros[i]).find("area_do_conhecimento").text() + "</td>";
+                
+                html += '<td style="text-align: left"><div class="btn-group">\n\
+                                                    <a class="btn btn-primary tooltips" title="Detalhes" data-placement="bottom" href="detalheslivro.php?id=' + $(livros[i]).find("id").text() + '"><i class="icon_plus"></i></a>\n\
+                                                    <a class="btn btn-danger tooltips" title="Contatar dono" data-placement="bottom" href="contatardono.php?id_1=' + $(livros[i]).find("dono").text() + '&id_2=' + $(livros[i]).find("id").text() + '"><i class="icon_mail_alt"></i></a>';
+                
+//                if(online==true){
+//                 html += '<a class="tooltips btn btn-success" title="Online" data-placement="bottom" onclick="onlineLivro(' + $(livros[i]).find("id").text() +',' + pessoa +',' + pagina + ')" href="#"><i class="icon_check_alt"></i></a>';   
+//                }else{
+//                   html += '<a class="tooltips btn btn-warning" title="Online" data-placement="bottom" onclick="onlineLivro(' + $(livros[i]).find("id").text() +',' + pessoa +',' + pagina + ')" href="#"><i class="icon_error-circle"></i></a>'; 
+//                }                                                                    
+                html += "</div></td></tr>";
+            }
+            var paginas = "";
+            paginas +='<ul class="pagination ">\n\
+            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+            var qtdPaginas = $(dados).find("livros").find("qtdPaginas").text(); 
+            for (i = 0; i < qtdPaginas; i++) {
+                 if(i==pagina){
+                   paginas +=  '<li class="active active_pagina"><a onclick="buscarLivro('+i+')" href="#">'+(i + 1)+' </a></li>';
+                 }else{
+                   paginas +=  '<li class="active_pagina"><a onclick="buscarLivro('+i+')" href="#">'+(i + 1)+' </a></li>';
+                 }
+             }
+            paginas += ' <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li></ul>';
+            $(".paginacao_ajax").html(html);
+            $(".paginas").html(paginas);
+           //console.log();
+           
+        },
+        error: function (req, erro) {
+            alert("Erro: "+erro);
+        }
+    });
+}
