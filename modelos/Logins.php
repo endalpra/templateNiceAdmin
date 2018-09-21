@@ -18,23 +18,33 @@ class Logins {
     private $confiabilidade;
     private $latitude;
     private $longitude;
+    private $imagem;
 
     public static function getPessoa($login, $senha) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-
-        $sql = "SELECT id,nome FROM pessoas where login='" . $login . "' AND senha='" . $senha . "' ";
+        $login = $bd->real_escape_string($login);
+        $senha = sha1( $bd->real_escape_string($senha) );
+        $sql = "SELECT id, nome, imagem FROM pessoas where login='" . $login . "' AND senha='" . $senha . "' ";
 
         return $bd->executarSQL($sql, 'Logins');
     }
 
     public static function getEmailPessoa($login) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-
+        $login = $bd->real_escape_string($login);
         $sql = "SELECT email, nome FROM pessoas WHERE login='" . $login . "'";
 
         return $bd->executarSQL($sql, 'Logins');
     }
+    
+    function getImagem() {
+        return $this->imagem;
+    }
 
+    function setImagem($imagem) {
+        $this->imagem = $imagem;
+    }
+    
     function getId() {
         return $this->id;
     }

@@ -1298,7 +1298,7 @@ th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  /*border-top: 1px solid #dddddd;*/
 }
 .table thead > tr > th {
   vertical-align: bottom;
@@ -1566,6 +1566,9 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 4px;  
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+/* -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
 }
 .form-control:focus {
   border-color: #007AFF;
@@ -1885,16 +1888,16 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #007aff;
-  border-color: #007aff;
+  background-color: #355D7E;
+  border-color: #355D7E;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: #007aff;
-  border-color: #007aff;
+  color: #355D7E;
+  border-color: #355D7E;
   background: transparent;  
 }
 .btn-primary:active,
@@ -1922,17 +1925,17 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-warning {
   color: #ffffff;
-  background-color: #ffcc00;
-  border-color: #ffcc00;
+  background-color: #A69C46;
+  border-color: #A69C46;
 }
 .btn-warning:hover,
 .btn-warning:focus,
 .btn-warning:active,
 .btn-warning.active,
 .open .dropdown-toggle.btn-warning {
-  color: #ffcc00;
+  color: #A69C46;
   background: transparent;
-  border-color: #ffcc00;
+  border-color: #A69C46;
 }
 .btn-warning:active,
 .btn-warning.active,
@@ -1954,22 +1957,22 @@ fieldset[disabled] .btn-warning:active,
 .btn-warning.disabled.active,
 .btn-warning[disabled].active,
 fieldset[disabled] .btn-warning.active {
-  background-color: #ffcc00;
-  border-color: #ffcc00;
+  background-color: #A69C46;
+  border-color: #A69C46;
 }
 .btn-danger {
   color: #ffffff;
-  background-color: #ff2d55;
-  border-color: #ff2d55;
+  background-color: #653E2A;
+  border-color: #653E2A;
 }
 .btn-danger:hover,
 .btn-danger:focus,
 .btn-danger:active,
 .btn-danger.active,
 .open .dropdown-toggle.btn-danger {
-  color: #ff2d55;
+  color: #653E2A;
   background: transparent;
-  border-color: #ff2d55;
+  border-color: #653E2A;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -1991,22 +1994,22 @@ fieldset[disabled] .btn-danger:active,
 .btn-danger.disabled.active,
 .btn-danger[disabled].active,
 fieldset[disabled] .btn-danger.active {
-  background-color: #ff2d55;
-  border-color: #ff2d55;
+  background-color: #653E2A;
+  border-color: #653E2A;
 }
 .btn-success {
   color: #ffffff;
-  background-color: #4cd964;
-  border-color: #4cd964;
+  background-color: #1D503C;
+  border-color: #1D503C;
 }
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
-  color: #4cd964;
+  color: #1D503C;
   background: transparent;
-  border-color: #4cd964;
+  border-color: #1D503C;
 }
 .btn-success:active,
 .btn-success.active,
@@ -2029,8 +2032,8 @@ fieldset[disabled] .btn-success:active,
 .btn-success.disabled.active,
 .btn-success[disabled].active,
 fieldset[disabled] .btn-success.active {
-  background-color: #4cd964;
-  border-color: #4cd964;
+  background-color: #1D503C;
+  border-color: #1D503C;
 }
 .btn-info {
   color: #ffffff;
@@ -2887,7 +2890,7 @@ input[type="button"].btn-block {
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu {
   top: auto;
-  bottom: 100%;
+  bottom: 10%;
   margin-bottom: 1px;
 }
 @media (min-width: 768px) {
@@ -3207,7 +3210,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   vertical-align: middle;
 }
 .input-group-addon {
-  padding: 6px 12px;
+  padding: 13.5px 15px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
@@ -4961,9 +4964,13 @@ body.modal-open,
   .modal-dialog {
     left: 50%;
     right: auto;
-    width: 600px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    width: 400px;
+    padding-top: 10%;
+    /*padding-bottom: 30px;*/
+  }
+  .modal-dialog-detalhes-livro {
+    padding-top: 4.6% !important;
+    width: 800px !important;  
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);

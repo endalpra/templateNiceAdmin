@@ -9,11 +9,6 @@ class Areas_do_conhecimento {
     private $nome;
     private $pessoa;
 
-//    public static function cadastrarAreas_do_conhecimento($nome, $pessoa) {
-//        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-//        $sql = "INSERT INTO areas_do_conhecimento(nome,pessoa) VALUES('$nome','$pessoa') ";
-//        return $bd->executarSQL($sql);
-//    }
 
     public static function buscarAreas_do_conhecimentoNome($nome) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
@@ -21,15 +16,9 @@ class Areas_do_conhecimento {
         return $bd->executarSQL($sql, 'Areas_do_conhecimento');
     }
 
-//    public static function buscarAreas_do_conhecimentoPessoa($pessoa) {
-//        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-//        $sql = "SELECT * FROM areas_do_conhecimento WHERE pessoa=" . $pessoa;
-//        return $bd->executarSQL($sql, 'Areas_do_conhecimento');
-//    }
-
     public static function buscarTodasAreas_do_conhecimento() {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
-        $sql = "SELECT * FROM Areas_do_conhecimento ORDER BY nome";
+        $sql = "SELECT * FROM areas_do_conhecimento ORDER BY nome";
         return $bd->executarSQL($sql, 'Areas_do_conhecimento');
     }
 

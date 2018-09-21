@@ -12,8 +12,10 @@ class Estantes {
 
     public static function cadastrarEstante($nome, $pessoa) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $nome = $bd->real_escape_string($nome);
         $sql = "INSERT INTO estantes(nome, pessoa) VALUES('$nome','$pessoa') ";
-        return $bd->executarSQL($sql);
+        $bd->executarSQL($sql);
+        return $bd->executarSQL("SELECT LAST_INSERT_ID() as id FROM estantes", "Estantes");
     }
 
     public static function buscarEstanteId($id, $pessoa){
@@ -33,15 +35,16 @@ class Estantes {
         $sql = "SELECT * FROM estantes e WHERE e.pessoa=".$pessoa;
         return $bd->executarSQL($sql, 'Estantes');
     }
-    
+             
      public static function getNumPaginas($pessoa, $limitePagina){
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
         $sql = "SELECT CEIL(COUNT(id) / $limitePagina) AS paginas FROM estantes WHERE pessoa=".$pessoa;
         return $bd->executarSQL($sql, 'Estantes');
     }
     
-      public static function alterarEstante($id,$nome) {
+      public static function alterarEstante($id, $nome) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $nome = $bd->real_escape_string($nome);
         $sql = "UPDATE estantes SET nome='$nome' WHERE id=".$id;
         return $bd->executarSQL($sql);
     }

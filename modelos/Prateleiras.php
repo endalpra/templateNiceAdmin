@@ -13,12 +13,14 @@ class Prateleiras {
     
       public static function cadastrarPrateleira($nome, $estante, $pessoa) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $nome = $bd->real_escape_string($nome);
         $sql = "INSERT INTO prateleiras(nome, estante, pessoa) VALUES('$nome','$estante','$pessoa') ";
         return $bd->executarSQL($sql);
     }
 
     public static function buscarPrateleiraNome($nome, $pessoa){
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $nome = $bd->real_escape_string($nome);
         $sql = "SELECT * FROM prateleiras WHERE nome='".$nome."' AND pessoa=".$pessoa;
         return $bd->executarSQL($sql, 'Prateleiras');
     }
@@ -32,6 +34,12 @@ class Prateleiras {
      public static function buscarPrateleirasPessoa($pessoa, $primeiroRegistro, $qtdRegistros){
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
         $sql = "SELECT p.id id, p.nome nome,e.nome estante FROM prateleiras p, estantes e WHERE p.estante=e.id AND p.pessoa=".$pessoa." ORDER BY p.nome LIMIT $primeiroRegistro, $qtdRegistros";
+        return $bd->executarSQL($sql, 'Prateleiras');
+    }
+    
+    public static function existeEstanteEmPrateleiras($estante){
+        $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $sql = "SELECT * FROM prateleiras WHERE estante=".$estante;
         return $bd->executarSQL($sql, 'Prateleiras');
     }
     
@@ -49,6 +57,7 @@ class Prateleiras {
     
     public static function editarPrateleira($id, $nome, $estante) {
         $bd = new Banco(BANCO_HOST, BANCO_USUARIO, BANCO_SENHA, BANCO_BASE_DADOS);
+        $nome = $bd->real_escape_string($nome);
         $sql = "UPDATE prateleiras SET nome='$nome', estante='$estante' WHERE id=".$id;
         return $bd->executarSQL($sql);
     }

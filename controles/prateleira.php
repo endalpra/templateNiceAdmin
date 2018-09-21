@@ -2,7 +2,9 @@
 
 require_once (__DIR__ . '/../modelos/Prateleiras.php');
 require_once (__DIR__ . '/../modelos/Estantes.php');
+require_once (__DIR__ . '/../modelos/Livros.php');
 require_once (__DIR__ . '/../bibliotecas/URL.php');
+//require_once (__DIR__ . '/../bibliotecas/funcoes.php');
 
 
 if (URL::isPaginaAtual("cadastrarprateleira.php")) {
@@ -21,7 +23,7 @@ if (URL::isPaginaAtual("cadastrarprateleira.php")) {
         } else {
             $msg = 0;
         }
-    } else {
+    } else if (isset($_POST['btCadastrar'])) {
         $msgErro = "Preencha os campos obrigatórios *";
     }
 } else if (URL::isPaginaAtual("listarprateleiras.php")) {
@@ -31,7 +33,7 @@ if (URL::isPaginaAtual("cadastrarprateleira.php")) {
     $qtdPaginas = Prateleiras::getNumPaginas($pessoa, QTD_PAG_PRATELEIRA);
 } else if (URL::isPaginaAtual("editarprateleira.php")) {
     //CARREGA OS DADOS NA PÁGINA
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $pessoa = $_SESSION['ses-usu-id'];
         $estantes = Estantes::buscarTodasEstantesPessoa($pessoa);
         $id = $_GET['id'];
@@ -39,24 +41,24 @@ if (URL::isPaginaAtual("cadastrarprateleira.php")) {
         $prateleiras = Prateleiras::buscarPrateleiraId($id, $pessoa);
         //SALVA OS DADOS
     } else if (isset($_POST['nome']) && !empty($_POST['nome']) && isset($_POST['estante']) && !empty($_POST['estante'])) {
-        $id = $_POST['id'];
+        $id = (int) $_POST['id'];
         $nome = $_POST['nome'];
-        $estante = $_POST['estante'];
+        $estante =  $_POST['estante'];
         $retorno = Prateleiras::editarPrateleira($id, $nome, $estante);
         if ($retorno) {
             $msg = '1';
         } else {
             $msg = '0';
         }
-    } else {
+    } else if (isset($_POST['btCadastrar'])) {
         $msgErro = 'Preencha os campos obrigatórios';
     }
 } else if (URL::isPaginaAtual("prateleira.php")) {
     //AJAX PAGINAÇÃO
-    if (isset($_POST['pagina']) && isset($_POST['pessoa'])) {
+    if (isset($_POST['pagina']) && is_numeric($_POST['pagina']) && isset($_POST['pessoa']) && is_numeric($_POST['pessoa'])) {
         $pagina = $_POST['pagina'];
         $primeiroRegistro = $pagina * QTD_PAG_PRATELEIRA;
-        $pessoa = $_POST['pessoa'];
+        $pessoa = $_POST['pessoa'] ;
         $prateleiras = Prateleiras::buscarPrateleirasPessoa($pessoa, $primeiroRegistro, QTD_PAG_PRATELEIRA);
 
         $xml = "";
@@ -73,12 +75,17 @@ if (URL::isPaginaAtual("cadastrarprateleira.php")) {
 
         echo $xml;
     }
-    if (isset($_POST['id'])) {
+    if (isset($_POST['id']) && is_numeric($_POST['id']) && isset($_POST['pessoa']) &&  is_numeric($_POST['pessoa'])) {
         $id = $_POST['id'];
-        $retorno = Prateleiras::excluirPrateleira($id);
-        if ($retorno) {
-            echo $id;
-        } else {
+        $existe_livro = Livros::existePrateleiraEmLivros($id, $_POST['pessoa']);
+        if (count($existe_livro)==0) {
+            $retorno = Prateleiras::excluirPrateleira($id);
+            if ($retorno) {
+                echo $id;
+            } else {
+                echo '0';
+            }
+        }else{
             echo '0';
         }
     }

@@ -225,43 +225,50 @@
 
 
 /*MEU CSS*/
-@media (max-width: 741px) {
+@media (max-width: 886px) {
     .search-minha{
         display: block !important;
     }
 }
 
-@media (min-width: 741px) {
+@media (min-width: 887px) {
     .search-minha{
         display: none !important;
     }
 }
-@media(min-width: 513px){
+@media(min-width: 660px){
     .notification-minha{
         display: none;
     }
 }
 
-@media (max-width: 740px){
+@media (max-width: 886px){
     .search-max-740{
         display: none !important;
     }
 }
 
-@media(min-width: 413px){
+@media(min-width: 562px){
     .login-max-412{
         display: none;
     }
 }
+@media (max-width: 768px){
+    .rodape-margin{
+       text-align: center !important;
+    }
+  
+}
+
 /*FIM MEU CSS*/
 
-@media (max-width: 512px) {
+@media (max-width: 660px) {
     #task_notificatoin_bar,#mail_notificatoin_bar,#alert_notificatoin_bar{
         display: none;
     }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 561px) {
 
     .notification-row,.task_notificatoin_bar, .search-row,.knob-charts, .dont-show , .inbox-head .sr-input, .inbox-head .sr-btn{
         display: none;
